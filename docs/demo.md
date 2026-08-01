@@ -40,6 +40,7 @@ large file upload → cited Q&A → activeagents telemetry.
 | solid_agent 0.1.x `record_generation!` template read `response.provider` / `#duration` / message `#tool_calls`, which ActiveAgent 1.x responses don't expose | Superseded by 0.2.0 templates (guarded `response_value`); confirmed working |
 | FTS5 virtual table breaks Rails' Ruby schema dumper (truncated `schema.rb`) | `schema_format = :sql` in `config/application.rb` |
 | `persist_prompt_to_context` writes `prompt_options[:messages].last` as the user turn — adding the user message yourself before `prompt` double-writes it | App convention: pass the question as the last `messages:` entry, never `add_user_message` first |
+| Tool use is invisible in both observability layers on the 1.x branch: `Providers::Common::Responses::Prompt` exposes no `tool_calls` and its `messages` omit tool-role turns (probe: only user+assistant). Telemetry gates tool spans on `result.tool_calls` (`telemetry/instrumentation.rb:100`) → "tools 0ms"; solid_agent scans `response.messages` for role "tool" (`has_context.rb:575`) → no persisted tool rows. Tools DO run — FTS5 `chunk_search MATCH` queries in the server log prove it (7 searches for one Moby-Dick question, 102K input tokens from loop re-sends) | Upstream: expose tool calls/messages (with timing) on the common Response; telemetry + solid_agent consumers already exist and will light up automatically |
 
 ## End-to-end validation with Anthropic key (2026-08-01)
 
