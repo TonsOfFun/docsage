@@ -22,6 +22,21 @@ class DocumentsController < ApplicationController
     @document = Document.find(params[:id])
     @context = @document.agent_contexts.find_by(agent_name: "DocumentAgent")
     @messages = @context&.messages&.order(:created_at) || []
+    @generations = @context&.generations&.order(:created_at)&.to_a || []
     @chunks_by_position = @document.chunks.index_by(&:position)
+    @instructions_preview = instructions_preview
+  end
+
+  private
+
+  # The system prompt exactly as the agent's view template renders it right
+  # now (Generation exposes the framework's instructions resolution).
+  def instructions_preview
+    return unless @document.askable?
+
+    DocumentAgent.with(document: @document, question: "").answer.instructions
+  rescue StandardError => e
+    Rails.logger.warn("[DocumentsController] instructions preview failed: #{e.message}")
+    nil
   end
 end

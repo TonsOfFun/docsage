@@ -1,0 +1,788 @@
+- main [ref=f17e2]:
+  - paragraph [ref=f17e3]:
+    - link "← All documents" [ref=f17e4] [cursor=pointer]:
+      - /url: /
+  - generic [ref=f17e5]:
+    - heading "NEETS Module 2" [level=1] [ref=f17e6]
+    - paragraph [ref=f17e7]:
+      - generic [ref=f17e8]: ready
+      - text: · 250 KB · 177 passages indexed · 23557 tokens used
+  - generic [ref=f17e9]:
+    - heading "Ask the document" [level=2] [ref=f17e10]
+    - group [ref=f17e11]:
+      - generic [ref=f17e12] [cursor=pointer]:
+        - text: ⚙️
+        - code [ref=f17e13]: system prompt
+        - text: (instructions the agent receives, rendered live)
+      - generic [ref=f17e591]: "You answer questions about the document \"NEETS Module 2\" (177 passages across 116 pages). Rules: - You cannot see the document. ALWAYS call search_document (or read_page) before answering. - Base your answer ONLY on passages the tools returned in this conversation. If they don't contain the answer, search again with different terms; if still not found, say the document doesn't appear to cover it. - Cite the passage reference (like [§12]) after every claim you take from the document. Every factual statement needs at least one citation. - Be concise. Do not include your reasoning or the raw passages in the answer. Document outline (from its opening pages — use it to pick pages for read_page and terms for search_document): UNCLASSIFIED UNCLASSIFIED Notice: NETPDTC is no longer responsible for the content accuracy of the NRTCs. For content issues, contact the servicing Center of Excellence: Center for Surface Combat Systems; (540) 284- 1061 or DSN: 234. For course registration, issues, or login issues contact the NRTC Helpdesk at: 1-877-264-8583 DSN: 922-1511 or Email: NRTC@navy.mil DISTRIBUTION STATEMENT A: Approved for public release; distribution is unlimited. NONRESIDENT TRAINING COURSE March 2012 Navy Electricity and Electronics Training Series Module 2-Alternating Current and Transformers NAVEDTRA 14174A S/N 0504LP1113094 UNCLASSIFIED UNCLASSIFIED DISTRIBUTION STATEMENT A: Approved for public release; distribution is unlimited. Although the words “he,” “him,” and “his” are used sparingly in this course to enhance communication, they are not intended to be gender driven or to affront or discriminate against anyone. UNCLASSIFIED i UNCLASSIFIED PREFACE By enrolling in this self-study course, you have demonstrated a desire to improve yourself and the Navy. Remember, however, this self-study course is only one part of the total Navy training program. Practical experience, schools, selected reading, and your desire to succeed are also necessary to successfully round out a fully meaningful training program. THE COURSE: This self-study course is organized into subject matter areas, each containing learning objectives to help you determine what you should learn along with text and illustrations to help you understand the information. The subject matter reflects day-to-day requirements and experiences of personnel in the rating or skill area. It also reflects guidance provided by Enlisted Community Managers (ECMs) and other senior personnel, technical references, instructions, etc., and either the occupational or naval standards, which are listed in the Manual of Navy Enlisted Manpower Personnel Classifications and Occupational Standards, NAVPERS 18068. THE QUESTIONS: The questions that appear in this course are designed to help you understand the material in the text. VALUE: In completing this course, you will improve your military and professional knowledge. Importantly, it can also help you study for the Navy-wide advancement in rate examination. If you are studying and discover a reference in the text to another publication for further information, look it up. 2012 Edition Published by Center for Surface Combat Systems (CSCS) NAVSUP Logistics Tracking Number 0504-LP-111-3094 UNCLASSIFIED ii UNCLASSIFIED Sailor’s Creed “I am a United States Sailor. I will support and defend the Constitution of the United States of America and I will obey the orders of those appointed over me. I represent the fighting spirit of the Navy and those who have gone before me to defend freedom and democracy around the world. I proudly serve my country’s Navy combat team with honor, courage and commitment. I am committed to excellence and the fair treatment of all.” UNCLASSIFIED iii UNCLASSIFIED TABLE OF CONTENTS CHAPTER PAGE 1 Concepts of Alternating Current...................................................... 1-1 2 Inductance…………........................................................................ 2-1 3 Capacitance……………………….................................................. 3-1 4 Inductive and Capacitive Reactance................................................ 4-1 5 Transformers………………………………………………………. 5-1 APPENDIX A Glossary......................................................................................... A-1 B Greek Alphabet…………………………………………………... B-1 C Square and Square Roots…………………………………………. C-1 D Useful AC Formulas……………………………………………… D-1 E Trigonometric Functions…………………………………………. E-1 F Trigonometric Tables……………………………………………... F-1"
+    - generic [ref=f17e14]:
+      - generic [ref=f17e15]: You
+      - paragraph [ref=f17e17]: What is mutual inductance and what factors affect it?
+    - generic [ref=f17e18]:
+      - generic [ref=f17e19]: DocumentAgent
+      - generic [ref=f17e20]:
+        - paragraph [ref=f17e21]: "Based on the document, here is the information about mutual inductance:"
+        - paragraph [ref=f17e22]: "## Definition"
+        - paragraph [ref=f17e23]:
+          - text: Mutual inductance is the property existing between two coils that are positioned so that the flux from one coil cuts the windings of the other coil [
+          - link "§3101" [ref=f17e24] [cursor=pointer]:
+            - /url: "#chunk-3101"
+          - text: "]. Whenever two coils are located so that the flux from one coil links with the turns of the other coil, a change of flux in one coil causes an emf to be induced in the other coil ["
+          - link "§2801" [ref=f17e25] [cursor=pointer]:
+            - /url: "#chunk-2801"
+          - text: "]."
+        - paragraph [ref=f17e26]: "## Factors That Affect Mutual Inductance"
+        - paragraph [ref=f17e27]:
+          - text: The mutual inductance between two coils depends upon the following factors [
+          - link "§2802" [ref=f17e28] [cursor=pointer]:
+            - /url: "#chunk-2802"
+          - text: "]:"
+        - paragraph [ref=f17e29]: 1. **Physical dimensions of the two coils** 2. **Number of turns in each coil** 3. **Distance between the two coils** 4. **Relative positions of the axes of the two coils** 5. **Permeability of the cores**
+        - paragraph [ref=f17e30]:
+          - text: "The amount of mutual inductance is also affected by the relative positions of the coils: if the coils are separated a considerable distance, the mutual inductance is low; conversely, if the coils are close together so that nearly all the flux of one coil links the turns of the other, the mutual inductance is high ["
+          - link "§2801" [ref=f17e31] [cursor=pointer]:
+            - /url: "#chunk-2801"
+          - text: "]."
+        - paragraph [ref=f17e32]: "## Coefficient of Coupling"
+        - paragraph [ref=f17e33]:
+          - text: The mutual inductance between two coils is expressed in terms of their individual inductances and the **coefficient of coupling (K)**, which represents the ratio of the flux cutting one coil to the flux originated in the other coil [
+          - link "§2802" [ref=f17e34] [cursor=pointer]:
+            - /url: "#chunk-2802"
+          - text: "]."
+        - group [ref=f17e35]:
+          - generic "generation · claude-haiku-4-5-20251001 · in:16,439 out:468 · end_turn" [ref=f17e36]
+    - generic [ref=f17e37]:
+      - generic [ref=f17e38]: You
+      - paragraph [ref=f17e40]: What does page 40 of this document cover? Use read_page.
+    - generic [ref=f17e41]:
+      - generic [ref=f17e42]: DocumentAgent
+      - generic [ref=f17e43]:
+        - paragraph [ref=f17e44]:
+          - text: Page 40 of this document covers different types of capacitors, specifically [
+          - link "§3901" [ref=f17e45] [cursor=pointer]:
+            - /url: "#chunk-3901"
+          - text: "-3902]:"
+        - paragraph [ref=f17e46]: 1. **Paper Capacitors** - Construction and encasing methods, with variations ranging from tubular cardboard types to plastic-encased types for wider temperature ranges
+        - paragraph [ref=f17e47]: 2. **Mica Capacitors** - Metal foil plates separated by sheets of mica as the dielectric, molded in plastic for corrosion protection and mechanical strength. Mica can withstand higher voltages than paper dielectrics, with common values ranging from approximately 50 picofarads to 0.02 microfarad
+        - paragraph [ref=f17e48]: 3. **Ceramic Capacitors** - Containing ceramic dielectrics in either hollow cylinder or disk shapes, with values typically ranging from 1 picofarad to 0.01 microfarad and can be used with voltages as high as 30,000 volts
+        - paragraph [ref=f17e49]: 4. **Electrolytic Capacitors** - Used where large capacitance is required, with detailed coverage of their construction, including the use of an aluminum container, oxide film dielectric, and electrolyte. The page discusses their polarization sensitivity, leakage resistance issues, and limitations to DC circuits or circuits with small AC voltage superimposed on DC voltage
+        - group [ref=f17e50]:
+          - generic "generation · claude-haiku-4-5-20251001 · in:6,317 out:333 · end_turn" [ref=f17e51]
+    - generic [ref=f17e52]:
+      - textbox "e.g. What does the author say about …?" [active] [ref=f17e53]: What safety precautions does this module give for working with capacitors?
+      - button "Ask" [disabled] [ref=f17e54] [cursor=pointer]
+    - paragraph [ref=f17e55]:
+      - text: Answers cite passages like
+      - generic [ref=f17e56]: §12
+      - text: — click one to jump to the source below.
+  - generic [ref=f17e57]:
+    - heading "Source passages" [level=2] [ref=f17e58]
+    - generic [ref=f17e59]:
+      - group [ref=f17e60]:
+        - generic "§1 page 1" [ref=f17e61] [cursor=pointer]:
+          - generic [ref=f17e62]: §1
+          - text: page 1
+      - group [ref=f17e63]:
+        - generic "§101 page 2" [ref=f17e64] [cursor=pointer]:
+          - generic [ref=f17e65]: §101
+          - text: page 2
+      - group [ref=f17e66]:
+        - generic "§102 page 2" [ref=f17e67] [cursor=pointer]:
+          - generic [ref=f17e68]: §102
+          - text: page 2
+      - group [ref=f17e69]:
+        - generic "§201 page 3" [ref=f17e70] [cursor=pointer]:
+          - generic [ref=f17e71]: §201
+          - text: page 3
+      - group [ref=f17e72]:
+        - generic "§202 page 3" [ref=f17e73] [cursor=pointer]:
+          - generic [ref=f17e74]: §202
+          - text: page 3
+      - group [ref=f17e75]:
+        - generic "§301 page 4" [ref=f17e76] [cursor=pointer]:
+          - generic [ref=f17e77]: §301
+          - text: page 4
+      - group [ref=f17e78]:
+        - generic "§401 page 5" [ref=f17e79] [cursor=pointer]:
+          - generic [ref=f17e80]: §401
+          - text: page 5
+      - group [ref=f17e81]:
+        - generic "§402 page 5" [ref=f17e82] [cursor=pointer]:
+          - generic [ref=f17e83]: §402
+          - text: page 5
+      - group [ref=f17e84]:
+        - generic "§501 page 6" [ref=f17e85] [cursor=pointer]:
+          - generic [ref=f17e86]: §501
+          - text: page 6
+      - group [ref=f17e87]:
+        - generic "§502 page 6" [ref=f17e88] [cursor=pointer]:
+          - generic [ref=f17e89]: §502
+          - text: page 6
+      - group [ref=f17e90]:
+        - generic "§601 page 7" [ref=f17e91] [cursor=pointer]:
+          - generic [ref=f17e92]: §601
+          - text: page 7
+      - group [ref=f17e93]:
+        - generic "§701 page 8" [ref=f17e94] [cursor=pointer]:
+          - generic [ref=f17e95]: §701
+          - text: page 8
+      - group [ref=f17e96]:
+        - generic "§702 page 8" [ref=f17e97] [cursor=pointer]:
+          - generic [ref=f17e98]: §702
+          - text: page 8
+      - group [ref=f17e99]:
+        - generic "§801 page 9" [ref=f17e100] [cursor=pointer]:
+          - generic [ref=f17e101]: §801
+          - text: page 9
+      - group [ref=f17e102]:
+        - generic "§901 page 10" [ref=f17e103] [cursor=pointer]:
+          - generic [ref=f17e104]: §901
+          - text: page 10
+      - group [ref=f17e105]:
+        - generic "§1001 page 11" [ref=f17e106] [cursor=pointer]:
+          - generic [ref=f17e107]: §1001
+          - text: page 11
+      - group [ref=f17e108]:
+        - generic "§1002 page 11" [ref=f17e109] [cursor=pointer]:
+          - generic [ref=f17e110]: §1002
+          - text: page 11
+      - group [ref=f17e111]:
+        - generic "§1101 page 12" [ref=f17e112] [cursor=pointer]:
+          - generic [ref=f17e113]: §1101
+          - text: page 12
+      - group [ref=f17e114]:
+        - generic "§1201 page 13" [ref=f17e115] [cursor=pointer]:
+          - generic [ref=f17e116]: §1201
+          - text: page 13
+      - group [ref=f17e117]:
+        - generic "§1301 page 14" [ref=f17e118] [cursor=pointer]:
+          - generic [ref=f17e119]: §1301
+          - text: page 14
+      - group [ref=f17e120]:
+        - generic "§1401 page 15" [ref=f17e121] [cursor=pointer]:
+          - generic [ref=f17e122]: §1401
+          - text: page 15
+      - group [ref=f17e123]:
+        - generic "§1402 page 15" [ref=f17e124] [cursor=pointer]:
+          - generic [ref=f17e125]: §1402
+          - text: page 15
+      - group [ref=f17e126]:
+        - generic "§1501 page 16" [ref=f17e127] [cursor=pointer]:
+          - generic [ref=f17e128]: §1501
+          - text: page 16
+      - group [ref=f17e129]:
+        - generic "§1601 page 17" [ref=f17e130] [cursor=pointer]:
+          - generic [ref=f17e131]: §1601
+          - text: page 17
+      - group [ref=f17e132]:
+        - generic "§1602 page 17" [ref=f17e133] [cursor=pointer]:
+          - generic [ref=f17e134]: §1602
+          - text: page 17
+      - group [ref=f17e135]:
+        - generic "§1603 page 17" [ref=f17e136] [cursor=pointer]:
+          - generic [ref=f17e137]: §1603
+          - text: page 17
+      - group [ref=f17e138]:
+        - generic "§1701 page 18" [ref=f17e139] [cursor=pointer]:
+          - generic [ref=f17e140]: §1701
+          - text: page 18
+      - group [ref=f17e141]:
+        - generic "§1801 page 19" [ref=f17e142] [cursor=pointer]:
+          - generic [ref=f17e143]: §1801
+          - text: page 19
+      - group [ref=f17e144]:
+        - generic "§1901 page 20" [ref=f17e145] [cursor=pointer]:
+          - generic [ref=f17e146]: §1901
+          - text: page 20
+      - group [ref=f17e147]:
+        - generic "§1902 page 20" [ref=f17e148] [cursor=pointer]:
+          - generic [ref=f17e149]: §1902
+          - text: page 20
+      - group [ref=f17e150]:
+        - generic "§1903 page 20" [ref=f17e151] [cursor=pointer]:
+          - generic [ref=f17e152]: §1903
+          - text: page 20
+      - group [ref=f17e153]:
+        - generic "§2001 page 21" [ref=f17e154] [cursor=pointer]:
+          - generic [ref=f17e155]: §2001
+          - text: page 21
+      - group [ref=f17e156]:
+        - generic "§2002 page 21" [ref=f17e157] [cursor=pointer]:
+          - generic [ref=f17e158]: §2002
+          - text: page 21
+      - group [ref=f17e159]:
+        - generic "§2101 page 22" [ref=f17e160] [cursor=pointer]:
+          - generic [ref=f17e161]: §2101
+          - text: page 22
+      - group [ref=f17e162]:
+        - generic "§2102 page 22" [ref=f17e163] [cursor=pointer]:
+          - generic [ref=f17e164]: §2102
+          - text: page 22
+      - group [ref=f17e165]:
+        - generic "§2201 page 23" [ref=f17e166] [cursor=pointer]:
+          - generic [ref=f17e167]: §2201
+          - text: page 23
+      - group [ref=f17e168]:
+        - generic "§2202 page 23" [ref=f17e169] [cursor=pointer]:
+          - generic [ref=f17e170]: §2202
+          - text: page 23
+      - group [ref=f17e171]:
+        - generic "§2301 page 24" [ref=f17e172] [cursor=pointer]:
+          - generic [ref=f17e173]: §2301
+          - text: page 24
+      - group [ref=f17e174]:
+        - generic "§2401 page 25" [ref=f17e175] [cursor=pointer]:
+          - generic [ref=f17e176]: §2401
+          - text: page 25
+      - group [ref=f17e177]:
+        - generic "§2501 page 26" [ref=f17e178] [cursor=pointer]:
+          - generic [ref=f17e179]: §2501
+          - text: page 26
+      - group [ref=f17e180]:
+        - generic "§2502 page 26" [ref=f17e181] [cursor=pointer]:
+          - generic [ref=f17e182]: §2502
+          - text: page 26
+      - group [ref=f17e183]:
+        - generic "§2601 page 27" [ref=f17e184] [cursor=pointer]:
+          - generic [ref=f17e185]: §2601
+          - text: page 27
+      - group [ref=f17e186]:
+        - generic "§2602 page 27" [ref=f17e187] [cursor=pointer]:
+          - generic [ref=f17e188]: §2602
+          - text: page 27
+      - group [ref=f17e189]:
+        - generic "§2701 page 28" [ref=f17e190] [cursor=pointer]:
+          - generic [ref=f17e191]: §2701
+          - text: page 28
+      - group [ref=f17e192]:
+        - generic "§2801 page 29" [ref=f17e193] [cursor=pointer]:
+          - generic [ref=f17e194]: §2801
+          - text: page 29
+      - group [ref=f17e195]:
+        - generic "§2802 page 29" [ref=f17e196] [cursor=pointer]:
+          - generic [ref=f17e197]: §2802
+          - text: page 29
+      - group [ref=f17e198]:
+        - generic "§2901 page 30" [ref=f17e199] [cursor=pointer]:
+          - generic [ref=f17e200]: §2901
+          - text: page 30
+      - group [ref=f17e201]:
+        - generic "§3001 page 31" [ref=f17e202] [cursor=pointer]:
+          - generic [ref=f17e203]: §3001
+          - text: page 31
+      - group [ref=f17e204]:
+        - generic "§3002 page 31" [ref=f17e205] [cursor=pointer]:
+          - generic [ref=f17e206]: §3002
+          - text: page 31
+      - group [ref=f17e207]:
+        - generic "§3101 page 32" [ref=f17e208] [cursor=pointer]:
+          - generic [ref=f17e209]: §3101
+          - text: page 32
+      - group [ref=f17e210]:
+        - generic "§3102 page 32" [ref=f17e211] [cursor=pointer]:
+          - generic [ref=f17e212]: §3102
+          - text: page 32
+      - group [ref=f17e213]:
+        - generic "§3201 page 33" [ref=f17e214] [cursor=pointer]:
+          - generic [ref=f17e215]: §3201
+          - text: page 33
+      - group [ref=f17e216]:
+        - generic "§3202 page 33" [ref=f17e217] [cursor=pointer]:
+          - generic [ref=f17e218]: §3202
+          - text: page 33
+      - group [ref=f17e219]:
+        - generic "§3301 page 34" [ref=f17e220] [cursor=pointer]:
+          - generic [ref=f17e221]: §3301
+          - text: page 34
+      - group [ref=f17e222]:
+        - generic "§3401 page 35" [ref=f17e223] [cursor=pointer]:
+          - generic [ref=f17e224]: §3401
+          - text: page 35
+      - group [ref=f17e225]:
+        - generic "§3402 page 35" [ref=f17e226] [cursor=pointer]:
+          - generic [ref=f17e227]: §3402
+          - text: page 35
+      - group [ref=f17e228]:
+        - generic "§3501 page 36" [ref=f17e229] [cursor=pointer]:
+          - generic [ref=f17e230]: §3501
+          - text: page 36
+      - group [ref=f17e231]:
+        - generic "§3502 page 36" [ref=f17e232] [cursor=pointer]:
+          - generic [ref=f17e233]: §3502
+          - text: page 36
+      - group [ref=f17e234]:
+        - generic "§3503 page 36" [ref=f17e235] [cursor=pointer]:
+          - generic [ref=f17e236]: §3503
+          - text: page 36
+      - group [ref=f17e237]:
+        - generic "§3504 page 36" [ref=f17e238] [cursor=pointer]:
+          - generic [ref=f17e239]: §3504
+          - text: page 36
+      - group [ref=f17e240]:
+        - generic "§3601 page 37" [ref=f17e241] [cursor=pointer]:
+          - generic [ref=f17e242]: §3601
+          - text: page 37
+      - group [ref=f17e243]:
+        - generic "§3701 page 38" [ref=f17e244] [cursor=pointer]:
+          - generic [ref=f17e245]: §3701
+          - text: page 38
+      - group [ref=f17e246]:
+        - generic "§3702 page 38" [ref=f17e247] [cursor=pointer]:
+          - generic [ref=f17e248]: §3702
+          - text: page 38
+      - group [ref=f17e249]:
+        - generic "§3703 page 38" [ref=f17e250] [cursor=pointer]:
+          - generic [ref=f17e251]: §3703
+          - text: page 38
+      - group [ref=f17e252]:
+        - generic "§3801 page 39" [ref=f17e253] [cursor=pointer]:
+          - generic [ref=f17e254]: §3801
+          - text: page 39
+      - group [ref=f17e255]:
+        - generic "§3802 page 39" [ref=f17e256] [cursor=pointer]:
+          - generic [ref=f17e257]: §3802
+          - text: page 39
+      - group [ref=f17e258]:
+        - generic "§3901 page 40" [ref=f17e259] [cursor=pointer]:
+          - generic [ref=f17e260]: §3901
+          - text: page 40
+      - group [ref=f17e261]:
+        - generic "§3902 page 40" [ref=f17e262] [cursor=pointer]:
+          - generic [ref=f17e263]: §3902
+          - text: page 40
+      - group [ref=f17e264]:
+        - generic "§4001 page 41" [ref=f17e265] [cursor=pointer]:
+          - generic [ref=f17e266]: §4001
+          - text: page 41
+      - group [ref=f17e267]:
+        - generic "§4002 page 41" [ref=f17e268] [cursor=pointer]:
+          - generic [ref=f17e269]: §4002
+          - text: page 41
+      - group [ref=f17e270]:
+        - generic "§4101 page 42" [ref=f17e271] [cursor=pointer]:
+          - generic [ref=f17e272]: §4101
+          - text: page 42
+      - group [ref=f17e273]:
+        - generic "§4102 page 42" [ref=f17e274] [cursor=pointer]:
+          - generic [ref=f17e275]: §4102
+          - text: page 42
+      - group [ref=f17e276]:
+        - generic "§4103 page 42" [ref=f17e277] [cursor=pointer]:
+          - generic [ref=f17e278]: §4103
+          - text: page 42
+      - group [ref=f17e279]:
+        - generic "§4201 page 43" [ref=f17e280] [cursor=pointer]:
+          - generic [ref=f17e281]: §4201
+          - text: page 43
+      - group [ref=f17e282]:
+        - generic "§4301 page 44" [ref=f17e283] [cursor=pointer]:
+          - generic [ref=f17e284]: §4301
+          - text: page 44
+      - group [ref=f17e285]:
+        - generic "§4302 page 44" [ref=f17e286] [cursor=pointer]:
+          - generic [ref=f17e287]: §4302
+          - text: page 44
+      - group [ref=f17e288]:
+        - generic "§4401 page 45" [ref=f17e289] [cursor=pointer]:
+          - generic [ref=f17e290]: §4401
+          - text: page 45
+      - group [ref=f17e291]:
+        - generic "§4402 page 45" [ref=f17e292] [cursor=pointer]:
+          - generic [ref=f17e293]: §4402
+          - text: page 45
+      - group [ref=f17e294]:
+        - generic "§4501 page 46" [ref=f17e295] [cursor=pointer]:
+          - generic [ref=f17e296]: §4501
+          - text: page 46
+      - group [ref=f17e297]:
+        - generic "§4601 page 47" [ref=f17e298] [cursor=pointer]:
+          - generic [ref=f17e299]: §4601
+          - text: page 47
+      - group [ref=f17e300]:
+        - generic "§4701 page 48" [ref=f17e301] [cursor=pointer]:
+          - generic [ref=f17e302]: §4701
+          - text: page 48
+      - group [ref=f17e303]:
+        - generic "§4801 page 49" [ref=f17e304] [cursor=pointer]:
+          - generic [ref=f17e305]: §4801
+          - text: page 49
+      - group [ref=f17e306]:
+        - generic "§4802 page 49" [ref=f17e307] [cursor=pointer]:
+          - generic [ref=f17e308]: §4802
+          - text: page 49
+      - group [ref=f17e309]:
+        - generic "§4901 page 50" [ref=f17e310] [cursor=pointer]:
+          - generic [ref=f17e311]: §4901
+          - text: page 50
+      - group [ref=f17e312]:
+        - generic "§4902 page 50" [ref=f17e313] [cursor=pointer]:
+          - generic [ref=f17e314]: §4902
+          - text: page 50
+      - group [ref=f17e315]:
+        - generic "§5001 page 51" [ref=f17e316] [cursor=pointer]:
+          - generic [ref=f17e317]: §5001
+          - text: page 51
+      - group [ref=f17e318]:
+        - generic "§5002 page 51" [ref=f17e319] [cursor=pointer]:
+          - generic [ref=f17e320]: §5002
+          - text: page 51
+      - group [ref=f17e321]:
+        - generic "§5101 page 52" [ref=f17e322] [cursor=pointer]:
+          - generic [ref=f17e323]: §5101
+          - text: page 52
+      - group [ref=f17e324]:
+        - generic "§5201 page 53" [ref=f17e325] [cursor=pointer]:
+          - generic [ref=f17e326]: §5201
+          - text: page 53
+      - group [ref=f17e327]:
+        - generic "§5202 page 53" [ref=f17e328] [cursor=pointer]:
+          - generic [ref=f17e329]: §5202
+          - text: page 53
+      - group [ref=f17e330]:
+        - generic "§5301 page 54" [ref=f17e331] [cursor=pointer]:
+          - generic [ref=f17e332]: §5301
+          - text: page 54
+      - group [ref=f17e333]:
+        - generic "§5302 page 54" [ref=f17e334] [cursor=pointer]:
+          - generic [ref=f17e335]: §5302
+          - text: page 54
+      - group [ref=f17e336]:
+        - generic "§5303 page 54" [ref=f17e337] [cursor=pointer]:
+          - generic [ref=f17e338]: §5303
+          - text: page 54
+      - group [ref=f17e339]:
+        - generic "§5401 page 55" [ref=f17e340] [cursor=pointer]:
+          - generic [ref=f17e341]: §5401
+          - text: page 55
+      - group [ref=f17e342]:
+        - generic "§5402 page 55" [ref=f17e343] [cursor=pointer]:
+          - generic [ref=f17e344]: §5402
+          - text: page 55
+      - group [ref=f17e345]:
+        - generic "§5501 page 56" [ref=f17e346] [cursor=pointer]:
+          - generic [ref=f17e347]: §5501
+          - text: page 56
+      - group [ref=f17e348]:
+        - generic "§5502 page 56" [ref=f17e349] [cursor=pointer]:
+          - generic [ref=f17e350]: §5502
+          - text: page 56
+      - group [ref=f17e351]:
+        - generic "§5601 page 57" [ref=f17e352] [cursor=pointer]:
+          - generic [ref=f17e353]: §5601
+          - text: page 57
+      - group [ref=f17e354]:
+        - generic "§5701 page 58" [ref=f17e355] [cursor=pointer]:
+          - generic [ref=f17e356]: §5701
+          - text: page 58
+      - group [ref=f17e357]:
+        - generic "§5702 page 58" [ref=f17e358] [cursor=pointer]:
+          - generic [ref=f17e359]: §5702
+          - text: page 58
+      - group [ref=f17e360]:
+        - generic "§5801 page 59" [ref=f17e361] [cursor=pointer]:
+          - generic [ref=f17e362]: §5801
+          - text: page 59
+      - group [ref=f17e363]:
+        - generic "§5901 page 60" [ref=f17e364] [cursor=pointer]:
+          - generic [ref=f17e365]: §5901
+          - text: page 60
+      - group [ref=f17e366]:
+        - generic "§5902 page 60" [ref=f17e367] [cursor=pointer]:
+          - generic [ref=f17e368]: §5902
+          - text: page 60
+      - group [ref=f17e369]:
+        - generic "§6001 page 61" [ref=f17e370] [cursor=pointer]:
+          - generic [ref=f17e371]: §6001
+          - text: page 61
+      - group [ref=f17e372]:
+        - generic "§6002 page 61" [ref=f17e373] [cursor=pointer]:
+          - generic [ref=f17e374]: §6002
+          - text: page 61
+      - group [ref=f17e375]:
+        - generic "§6101 page 62" [ref=f17e376] [cursor=pointer]:
+          - generic [ref=f17e377]: §6101
+          - text: page 62
+      - group [ref=f17e378]:
+        - generic "§6201 page 63" [ref=f17e379] [cursor=pointer]:
+          - generic [ref=f17e380]: §6201
+          - text: page 63
+      - group [ref=f17e381]:
+        - generic "§6202 page 63" [ref=f17e382] [cursor=pointer]:
+          - generic [ref=f17e383]: §6202
+          - text: page 63
+      - group [ref=f17e384]:
+        - generic "§6301 page 64" [ref=f17e385] [cursor=pointer]:
+          - generic [ref=f17e386]: §6301
+          - text: page 64
+      - group [ref=f17e387]:
+        - generic "§6302 page 64" [ref=f17e388] [cursor=pointer]:
+          - generic [ref=f17e389]: §6302
+          - text: page 64
+      - group [ref=f17e390]:
+        - generic "§6303 page 64" [ref=f17e391] [cursor=pointer]:
+          - generic [ref=f17e392]: §6303
+          - text: page 64
+      - group [ref=f17e393]:
+        - generic "§6401 page 65" [ref=f17e394] [cursor=pointer]:
+          - generic [ref=f17e395]: §6401
+          - text: page 65
+      - group [ref=f17e396]:
+        - generic "§6501 page 66" [ref=f17e397] [cursor=pointer]:
+          - generic [ref=f17e398]: §6501
+          - text: page 66
+      - group [ref=f17e399]:
+        - generic "§6601 page 67" [ref=f17e400] [cursor=pointer]:
+          - generic [ref=f17e401]: §6601
+          - text: page 67
+      - group [ref=f17e402]:
+        - generic "§6602 page 67" [ref=f17e403] [cursor=pointer]:
+          - generic [ref=f17e404]: §6602
+          - text: page 67
+      - group [ref=f17e405]:
+        - generic "§6701 page 68" [ref=f17e406] [cursor=pointer]:
+          - generic [ref=f17e407]: §6701
+          - text: page 68
+      - group [ref=f17e408]:
+        - generic "§6801 page 69" [ref=f17e409] [cursor=pointer]:
+          - generic [ref=f17e410]: §6801
+          - text: page 69
+      - group [ref=f17e411]:
+        - generic "§6901 page 70" [ref=f17e412] [cursor=pointer]:
+          - generic [ref=f17e413]: §6901
+          - text: page 70
+      - group [ref=f17e414]:
+        - generic "§6902 page 70" [ref=f17e415] [cursor=pointer]:
+          - generic [ref=f17e416]: §6902
+          - text: page 70
+      - group [ref=f17e417]:
+        - generic "§7001 page 71" [ref=f17e418] [cursor=pointer]:
+          - generic [ref=f17e419]: §7001
+          - text: page 71
+      - group [ref=f17e420]:
+        - generic "§7002 page 71" [ref=f17e421] [cursor=pointer]:
+          - generic [ref=f17e422]: §7002
+          - text: page 71
+      - group [ref=f17e423]:
+        - generic "§7101 page 72" [ref=f17e424] [cursor=pointer]:
+          - generic [ref=f17e425]: §7101
+          - text: page 72
+      - group [ref=f17e426]:
+        - generic "§7102 page 72" [ref=f17e427] [cursor=pointer]:
+          - generic [ref=f17e428]: §7102
+          - text: page 72
+      - group [ref=f17e429]:
+        - generic "§7103 page 72" [ref=f17e430] [cursor=pointer]:
+          - generic [ref=f17e431]: §7103
+          - text: page 72
+      - group [ref=f17e432]:
+        - generic "§7201 page 73" [ref=f17e433] [cursor=pointer]:
+          - generic [ref=f17e434]: §7201
+          - text: page 73
+      - group [ref=f17e435]:
+        - generic "§7202 page 73" [ref=f17e436] [cursor=pointer]:
+          - generic [ref=f17e437]: §7202
+          - text: page 73
+      - group [ref=f17e438]:
+        - generic "§7203 page 73" [ref=f17e439] [cursor=pointer]:
+          - generic [ref=f17e440]: §7203
+          - text: page 73
+      - group [ref=f17e441]:
+        - generic "§7301 page 74" [ref=f17e442] [cursor=pointer]:
+          - generic [ref=f17e443]: §7301
+          - text: page 74
+      - group [ref=f17e444]:
+        - generic "§7302 page 74" [ref=f17e445] [cursor=pointer]:
+          - generic [ref=f17e446]: §7302
+          - text: page 74
+      - group [ref=f17e447]:
+        - generic "§7401 page 75" [ref=f17e448] [cursor=pointer]:
+          - generic [ref=f17e449]: §7401
+          - text: page 75
+      - group [ref=f17e450]:
+        - generic "§7402 page 75" [ref=f17e451] [cursor=pointer]:
+          - generic [ref=f17e452]: §7402
+          - text: page 75
+      - group [ref=f17e453]:
+        - generic "§7501 page 76" [ref=f17e454] [cursor=pointer]:
+          - generic [ref=f17e455]: §7501
+          - text: page 76
+      - group [ref=f17e456]:
+        - generic "§7502 page 76" [ref=f17e457] [cursor=pointer]:
+          - generic [ref=f17e458]: §7502
+          - text: page 76
+      - group [ref=f17e459]:
+        - generic "§7601 page 77" [ref=f17e460] [cursor=pointer]:
+          - generic [ref=f17e461]: §7601
+          - text: page 77
+      - group [ref=f17e462]:
+        - generic "§7701 page 78" [ref=f17e463] [cursor=pointer]:
+          - generic [ref=f17e464]: §7701
+          - text: page 78
+      - group [ref=f17e465]:
+        - generic "§7801 page 79" [ref=f17e466] [cursor=pointer]:
+          - generic [ref=f17e467]: §7801
+          - text: page 79
+      - group [ref=f17e468]:
+        - generic "§7901 page 80" [ref=f17e469] [cursor=pointer]:
+          - generic [ref=f17e470]: §7901
+          - text: page 80
+      - group [ref=f17e471]:
+        - generic "§7902 page 80" [ref=f17e472] [cursor=pointer]:
+          - generic [ref=f17e473]: §7902
+          - text: page 80
+      - group [ref=f17e474]:
+        - generic "§8001 page 81" [ref=f17e475] [cursor=pointer]:
+          - generic [ref=f17e476]: §8001
+          - text: page 81
+      - group [ref=f17e477]:
+        - generic "§8101 page 82" [ref=f17e478] [cursor=pointer]:
+          - generic [ref=f17e479]: §8101
+          - text: page 82
+      - group [ref=f17e480]:
+        - generic "§8102 page 82" [ref=f17e481] [cursor=pointer]:
+          - generic [ref=f17e482]: §8102
+          - text: page 82
+      - group [ref=f17e483]:
+        - generic "§8201 page 83" [ref=f17e484] [cursor=pointer]:
+          - generic [ref=f17e485]: §8201
+          - text: page 83
+      - group [ref=f17e486]:
+        - generic "§8301 page 84" [ref=f17e487] [cursor=pointer]:
+          - generic [ref=f17e488]: §8301
+          - text: page 84
+      - group [ref=f17e489]:
+        - generic "§8401 page 85" [ref=f17e490] [cursor=pointer]:
+          - generic [ref=f17e491]: §8401
+          - text: page 85
+      - group [ref=f17e492]:
+        - generic "§8402 page 85" [ref=f17e493] [cursor=pointer]:
+          - generic [ref=f17e494]: §8402
+          - text: page 85
+      - group [ref=f17e495]:
+        - generic "§8501 page 86" [ref=f17e496] [cursor=pointer]:
+          - generic [ref=f17e497]: §8501
+          - text: page 86
+      - group [ref=f17e498]:
+        - generic "§8601 page 87" [ref=f17e499] [cursor=pointer]:
+          - generic [ref=f17e500]: §8601
+          - text: page 87
+      - group [ref=f17e501]:
+        - generic "§8701 page 88" [ref=f17e502] [cursor=pointer]:
+          - generic [ref=f17e503]: §8701
+          - text: page 88
+      - group [ref=f17e504]:
+        - generic "§8801 page 89" [ref=f17e505] [cursor=pointer]:
+          - generic [ref=f17e506]: §8801
+          - text: page 89
+      - group [ref=f17e507]:
+        - generic "§8901 page 90" [ref=f17e508] [cursor=pointer]:
+          - generic [ref=f17e509]: §8901
+          - text: page 90
+      - group [ref=f17e510]:
+        - generic "§9001 page 91" [ref=f17e511] [cursor=pointer]:
+          - generic [ref=f17e512]: §9001
+          - text: page 91
+      - group [ref=f17e513]:
+        - generic "§9101 page 92" [ref=f17e514] [cursor=pointer]:
+          - generic [ref=f17e515]: §9101
+          - text: page 92
+      - group [ref=f17e516]:
+        - generic "§9201 page 93" [ref=f17e517] [cursor=pointer]:
+          - generic [ref=f17e518]: §9201
+          - text: page 93
+      - group [ref=f17e519]:
+        - generic "§9301 page 94" [ref=f17e520] [cursor=pointer]:
+          - generic [ref=f17e521]: §9301
+          - text: page 94
+      - group [ref=f17e522]:
+        - generic "§9401 page 95" [ref=f17e523] [cursor=pointer]:
+          - generic [ref=f17e524]: §9401
+          - text: page 95
+      - group [ref=f17e525]:
+        - generic "§9501 page 96" [ref=f17e526] [cursor=pointer]:
+          - generic [ref=f17e527]: §9501
+          - text: page 96
+      - group [ref=f17e528]:
+        - generic "§9601 page 97" [ref=f17e529] [cursor=pointer]:
+          - generic [ref=f17e530]: §9601
+          - text: page 97
+      - group [ref=f17e531]:
+        - generic "§9701 page 98" [ref=f17e532] [cursor=pointer]:
+          - generic [ref=f17e533]: §9701
+          - text: page 98
+      - group [ref=f17e534]:
+        - generic "§9801 page 99" [ref=f17e535] [cursor=pointer]:
+          - generic [ref=f17e536]: §9801
+          - text: page 99
+      - group [ref=f17e537]:
+        - generic "§9901 page 100" [ref=f17e538] [cursor=pointer]:
+          - generic [ref=f17e539]: §9901
+          - text: page 100
+      - group [ref=f17e540]:
+        - generic "§10001 page 101" [ref=f17e541] [cursor=pointer]:
+          - generic [ref=f17e542]: §10001
+          - text: page 101
+      - group [ref=f17e543]:
+        - generic "§10101 page 102" [ref=f17e544] [cursor=pointer]:
+          - generic [ref=f17e545]: §10101
+          - text: page 102
+      - group [ref=f17e546]:
+        - generic "§10201 page 103" [ref=f17e547] [cursor=pointer]:
+          - generic [ref=f17e548]: §10201
+          - text: page 103
+      - group [ref=f17e549]:
+        - generic "§10301 page 104" [ref=f17e550] [cursor=pointer]:
+          - generic [ref=f17e551]: §10301
+          - text: page 104
+      - group [ref=f17e552]:
+        - generic "§10401 page 105" [ref=f17e553] [cursor=pointer]:
+          - generic [ref=f17e554]: §10401
+          - text: page 105
+      - group [ref=f17e555]:
+        - generic "§10501 page 106" [ref=f17e556] [cursor=pointer]:
+          - generic [ref=f17e557]: §10501
+          - text: page 106
+      - group [ref=f17e558]:
+        - generic "§10601 page 107" [ref=f17e559] [cursor=pointer]:
+          - generic [ref=f17e560]: §10601
+          - text: page 107
+      - group [ref=f17e561]:
+        - generic "§10602 page 107" [ref=f17e562] [cursor=pointer]:
+          - generic [ref=f17e563]: §10602
+          - text: page 107
+      - group [ref=f17e564]:
+        - generic "§10701 page 108" [ref=f17e565] [cursor=pointer]:
+          - generic [ref=f17e566]: §10701
+          - text: page 108
+      - group [ref=f17e567]:
+        - generic "§10801 page 109" [ref=f17e568] [cursor=pointer]:
+          - generic [ref=f17e569]: §10801
+          - text: page 109
+      - group [ref=f17e570]:
+        - generic "§10901 page 110" [ref=f17e571] [cursor=pointer]:
+          - generic [ref=f17e572]: §10901
+          - text: page 110
+      - group [ref=f17e573]:
+        - generic "§11001 page 111" [ref=f17e574] [cursor=pointer]:
+          - generic [ref=f17e575]: §11001
+          - text: page 111
+      - group [ref=f17e576]:
+        - generic "§11101 page 112" [ref=f17e577] [cursor=pointer]:
+          - generic [ref=f17e578]: §11101
+          - text: page 112
+      - group [ref=f17e579]:
+        - generic "§11201 page 113" [ref=f17e580] [cursor=pointer]:
+          - generic [ref=f17e581]: §11201
+          - text: page 113
+      - group [ref=f17e582]:
+        - generic "§11301 page 114" [ref=f17e583] [cursor=pointer]:
+          - generic [ref=f17e584]: §11301
+          - text: page 114
+      - group [ref=f17e585]:
+        - generic "§11401 page 115" [ref=f17e586] [cursor=pointer]:
+          - generic [ref=f17e587]: §11401
+          - text: page 115
+      - group [ref=f17e588]:
+        - generic "§11501 page 116" [ref=f17e589] [cursor=pointer]:
+          - generic [ref=f17e590]: §11501
+          - text: page 116

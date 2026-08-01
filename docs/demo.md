@@ -112,6 +112,27 @@ the 1.x view resolver in `lib/active_agent/concerns/view.rb`):
 - Verified live: read_page(40) via the view-loaded schema answered with
   [§3901] citations (page 40's position block).
 
+## Prompt & generation contents visible end to end (2026-08-01)
+
+"I should be able to see the contents of the prompt and generation" — now
+true in both apps (screenshots `tmp/screenshots/demo3-0*.png`):
+
+- **Upstream (activeagent `7e0236af`, pushed):** telemetry spans now carry
+  content — `agent.prompt` gets `prompt.input.instructions` (rendered) +
+  `prompt.input.messages`; `llm.generate` gets `llm.output.message` +
+  `llm.finish_reason`; all capped at 4k chars. The dashboard's span panel
+  already pretty-prints `input`/`output` attributes, so no dashboard changes
+  were needed.
+- **Docsage UI:** the chat now has a "⚙️ system prompt" details block
+  (rendered live via `Generation#instructions`) and, under each answer, a
+  "generation" details block from the solid_agent record — model, tokens,
+  finish_reason, est. cost, trace_id (correlates to the dashboard), and the
+  stored generation content.
+- Verified live on the 116-page manual: fresh question → dashboard trace
+  `debb9beb` shows the full instructions (outline included) and the answer
+  text in the span details; the docsage generation block shows the same
+  trace_id.
+
 ## Demo script (pending provider key)
 
 1. `bin/rails server -p 3001` (dashboard already on :3000)

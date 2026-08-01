@@ -1,0 +1,231 @@
+- generic [active] [ref=f18e1]:
+  - generic [ref=f18e3]:
+    - complementary [ref=f18e4]:
+      - button "Active Agent mascot Demo's Account" [ref=f18e6]:
+        - generic [ref=f18e7]:
+          - img "Active Agent mascot" [ref=f18e9]
+          - generic [ref=f18e34]: Demo's Account
+      - navigation [ref=f18e37]:
+        - generic [ref=f18e38]:
+          - button "@ Agents 5" [ref=f18e39]:
+            - generic [ref=f18e40]:
+              - generic [ref=f18e41]: "@"
+              - generic [ref=f18e42]: Agents
+            - generic [ref=f18e43]: "5"
+          - button "+ New Agent" [ref=f18e44]:
+            - generic [ref=f18e45]:
+              - generic [ref=f18e46]: +
+              - generic [ref=f18e47]: New Agent
+          - button "> Run Agents" [ref=f18e48]:
+            - generic [ref=f18e49]:
+              - generic [ref=f18e50]: ">"
+              - generic [ref=f18e51]: Run Agents
+        - generic [ref=f18e52]:
+          - generic [ref=f18e53]: Observability
+          - generic [ref=f18e54]:
+            - button "-> Traces" [ref=f18e55]:
+              - generic [ref=f18e56]:
+                - generic [ref=f18e57]: "->"
+                - generic [ref=f18e58]: Traces
+            - button "# Metrics" [ref=f18e59]:
+              - generic [ref=f18e60]:
+                - generic [ref=f18e61]: "#"
+                - generic [ref=f18e62]: Metrics
+            - button "<> Interactions" [ref=f18e63]:
+              - generic [ref=f18e64]:
+                - generic [ref=f18e65]: <>
+                - generic [ref=f18e66]: Interactions
+            - button "= Evaluations" [ref=f18e67]:
+              - generic [ref=f18e68]:
+                - generic [ref=f18e69]: =
+                - generic [ref=f18e70]: Evaluations
+            - button "[>] Session Replay" [ref=f18e71]:
+              - generic [ref=f18e72]:
+                - generic [ref=f18e73]: "[>]"
+                - generic [ref=f18e74]: Session Replay
+            - button "%% Benchmarks" [ref=f18e75]:
+              - generic [ref=f18e76]:
+                - generic [ref=f18e77]: "%%"
+                - generic [ref=f18e78]: Benchmarks
+        - generic [ref=f18e79]:
+          - generic [ref=f18e80]: Workspace
+          - generic [ref=f18e81]:
+            - button "🏢 Organization" [ref=f18e82]:
+              - generic [ref=f18e83]:
+                - generic [ref=f18e84]: 🏢
+                - generic [ref=f18e85]: Organization
+            - button "⚙️ Settings" [ref=f18e86]:
+              - generic [ref=f18e87]:
+                - generic [ref=f18e88]: ⚙️
+                - generic [ref=f18e89]: Settings
+      - generic [ref=f18e90]:
+        - generic [ref=f18e91]: Resources
+        - generic [ref=f18e92]:
+          - link "? Documentation" [ref=f18e93] [cursor=pointer]:
+            - /url: https://docs.activeagents.ai
+            - generic [ref=f18e94]: "?"
+            - generic [ref=f18e95]: Documentation
+          - link "* GitHub" [ref=f18e96] [cursor=pointer]:
+            - /url: https://github.com/activeagents/activeagent
+            - generic [ref=f18e97]: "*"
+            - generic [ref=f18e98]: GitHub
+      - generic [ref=f18e99]: Active Agent v1.0.3
+    - generic [ref=f18e101]:
+      - banner [ref=f18e102]:
+        - generic [ref=f18e103]:
+          - button "Switch to dark mode" [ref=f18e104]
+          - generic [ref=f18e107]: Connected
+          - button "D" [ref=f18e111]
+      - main [ref=f18e114]:
+        - generic [ref=f18e115]:
+          - generic [ref=f18e116]:
+            - generic [ref=f18e117]:
+              - heading "Traces" [level=1] [ref=f18e118]
+              - paragraph [ref=f18e119]: Last 30 minutes • Click timeline to drill down
+            - generic [ref=f18e120]:
+              - generic [ref=f18e121]:
+                - button "timeline" [ref=f18e122]
+                - button "agents" [ref=f18e123]
+                - button "actions" [ref=f18e124]
+                - button "spans" [ref=f18e125]
+              - combobox [ref=f18e126]:
+                - option "All Agents" [selected]
+                - option "DocumentAgent"
+              - combobox [ref=f18e127]:
+                - option "All Actions" [selected]
+                - option "DocumentAgent#answer"
+              - combobox [ref=f18e128]:
+                - option "All Status" [selected]
+                - option "Success"
+                - option "Error"
+              - combobox [ref=f18e129]:
+                - option "Newest first" [selected]
+                - option "Slowest first"
+          - generic [ref=f18e130]:
+            - generic [ref=f18e131]:
+              - heading "Agent Requests / Minute" [level=3] [ref=f18e132]
+              - generic [ref=f18e133]: Document
+            - application [ref=f18e140] [cursor=pointer]:
+              - generic [ref=f18e152]:
+                - generic [ref=f18e153]:
+                  - generic [ref=f18e154]: 01:50 PM
+                  - generic [ref=f18e281]: 01:55 PM
+                  - generic [ref=f18e283]: 02:00 PM
+                  - generic [ref=f18e285]: 02:05 PM
+                  - generic [ref=f18e287]: 02:10 PM
+                  - generic [ref=f18e289]: 02:15 PM
+                - generic [ref=f18e166]:
+                  - generic [ref=f18e167]: "0"
+                  - generic [ref=f18e169]: "2"
+                  - generic [ref=f18e171]: "4"
+            - generic [ref=f18e173]:
+              - generic [ref=f18e174]:
+                - generic [ref=f18e175]: "3"
+                - generic [ref=f18e176]: Total Requests
+              - generic [ref=f18e177]:
+                - generic [ref=f18e178]: "0"
+                - generic [ref=f18e179]: Errors
+              - generic [ref=f18e180]:
+                - generic [ref=f18e181]: 8444ms
+                - generic [ref=f18e182]: Avg Latency
+              - generic [ref=f18e183]:
+                - generic [ref=f18e184]: 0.1/min
+                - generic [ref=f18e185]: Throughput
+          - generic [ref=f18e186]:
+            - generic [ref=f18e187]:
+              - generic [ref=f18e188] [cursor=pointer]:
+                - generic [ref=f18e189]:
+                  - generic [ref=f18e190]:
+                    - generic [ref=f18e191]: TRACE
+                    - generic [ref=f18e192]: debb9beb
+                  - generic [ref=f18e193]: DocumentAgent.answer
+                - generic [ref=f18e194]:
+                  - generic [ref=f18e195]:
+                    - generic [ref=f18e196]: 
+                    - text: 9.78s
+                  - generic [ref=f18e197]: 47.5K tokens
+                  - generic [ref=f18e198]:
+                    - generic [ref=f18e199]: 
+                    - text: $0.0494
+                  - generic [ref=f18e200]:
+                    - generic [ref=f18e201]: 
+                    - text: OK
+              - generic [ref=f18e236]:
+                - generic [ref=f18e237]:
+                  - generic [ref=f18e238]: 0ms
+                  - generic [ref=f18e239]: 3228ms
+                  - generic [ref=f18e240]: 6455ms
+                  - generic [ref=f18e241]: 9.78s
+                - generic [ref=f18e242]:
+                  - generic "Click for span details" [ref=f18e243] [cursor=pointer]:
+                    - generic [ref=f18e244]:
+                      - generic [ref=f18e245]: ">"
+                      - generic [ref=f18e246]: DocumentAgent.answer
+                    - generic [ref=f18e249]: 9.78s · 100.0%
+                  - generic "Click for span details" [ref=f18e250] [cursor=pointer]:
+                    - generic [ref=f18e251]:
+                      - generic [ref=f18e252]: "*"
+                      - generic [ref=f18e253]: agent.prompt
+                    - generic [ref=f18e256]: 0ms · 0.00%
+                  - generic [ref=f18e291]:
+                    - generic [ref=f18e292]:
+                      - generic [ref=f18e293]: "duration: 0ms"
+                      - generic [ref=f18e294]: "status: OK"
+                      - generic [ref=f18e295]: "span: a7b523be85cec69b"
+                    - generic [ref=f18e296]:
+                      - generic [ref=f18e297]:
+                        - generic [ref=f18e298]: "prompt.input.messages:"
+                        - generic [ref=f18e299]: "[ { \"role\": \"user\", \"content\": \"What is mutual inductance and what factors affect it?\" }, { \"role\": \"assistant\", \"content\": \"Based on the document, here is the information about mutual inductance:\\n\\n## Definition\\n\\nMutual inductance is the property existing between two coils that are positioned so that the flux from one coil cuts the windings of the other coil [§3101]. Whenever two coils are located so that the flux from one coil links with the turns of the other coil, a change of flux in one coil causes an emf to be induced in the other coil [§2801].\\n\\n## Factors That Affect Mutual Inductance\\n\\nThe mutual inductance between two coils depends upon the following factors [§2802]:\\n\\n1. **Physical dimensions of the two coils**\\n2. **Number of turns in each coil**\\n3. **Distance between the two coils**\\n4. **Relative positions of the axes of the two coils**\\n5. **Permeability of the cores**\\n\\nThe amount of mutual inductance is also affected by the relative positions of the coils: if the coils are separated a considerable distance, the mutual inductance is low; conversely, if the coils are close together so that nearly all the flux of one coil links the turns of the other, the mutual inductance is high [§2801].\\n\\n## Coefficient of Coupling\\n\\nThe mutual inductance between two coils is expressed in terms of their individual inductances and the **coefficient of coupling (K)**, which represents the ratio of the flux cutting one coil to the flux originated in the other coil [§2802].\" }, { \"role\": \"user\", \"content\": \"What does page 40 of this document cover? Use read_page.\" }, { \"role\": \"assistant\", \"content\": \"Page 40 of this document covers different types of capacitors, specifically [§3901-3902]:\\n\\n1. **Paper Capacitors** - Construction and encasing methods, with variations ranging from tubular cardboard types to plastic-encased types for wider temperature ranges\\n\\n2. **Mica Capacitors** - Metal foil plates separated by sheets of mica as the dielectric, molded in plastic for corrosion protection and mechanical strength. Mica can withstand higher voltages than paper dielectrics, with common values ranging from approximately 50 picofarads to 0.02 microfarad\\n\\n3. **Ceramic Capacitors** - Containing ceramic dielectrics in either hollow cylinder or disk shapes, with values typically ranging from 1 picofarad to 0.01 microfarad and can be used with voltages as high as 30,000 volts\\n\\n4. **Electrolytic Capacitors** - Used where large capacitance is required, with detailed coverage of their construction, including the use of an aluminum container, oxide film dielectric, and electrolyte. The page discusses their polarization sensitivity, leakage resistance issues, and limitations to DC circuits or circuits with small AC voltage superimposed on DC voltage\" }, { \"role\": \"user\", \"content\": \"What safety precautions does this module give for working with capacitors?\" } ]"
+                      - generic [ref=f18e300]:
+                        - generic [ref=f18e301]: "prompt.input.instructions:"
+                        - text: "You answer questions about the document \"NEETS Module 2\" (177 passages across 116 pages). Rules: - You cannot see the document. ALWAYS call search_document (or read_page) before answering. - Base your answer ONLY on passages the tools returned in this conversation. If they don't contain the answer, search again with different terms; if still not found, say the document doesn't appear to cover it. - Cite the passage reference (like [§12]) after every claim you take from the document. Every factual statement needs at least one citation. - Be concise. Do not include your reasoning or the raw passages in the answer. Document outline (from its opening pages — use it to pick pages for read_page and terms for search_document): UNCLASSIFIED UNCLASSIFIED Notice: NETPDTC is no longer responsible for the content accuracy of the NRTCs. For content issues, contact the servicing Center of Excellence: Center for Surface Combat Systems; (540) 284- 1061 or DSN: 234. For course registration, issues, or login issues contact the NRTC Helpdesk at: 1-877-264-8583 DSN: 922-1511 or Email: NRTC@navy.mil DISTRIBUTION STATEMENT A: Approved for public release; distribution is unlimited. NONRESIDENT TRAINING COURSE March 2012 Navy Electricity and Electronics Training Series Module 2-Alternating Current and Transformers NAVEDTRA 14174A S/N 0504LP1113094 UNCLASSIFIED UNCLASSIFIED DISTRIBUTION STATEMENT A: Approved for public release; distribution is unlimited. Although the words “he,” “him,” and “his” are used sparingly in this course to enhance communication, they are not intended to be gender driven or to affront or discriminate against anyone. UNCLASSIFIED i UNCLASSIFIED PREFACE By enrolling in this self-study course, you have demonstrated a desire to improve yourself and the Navy. Remember, however, this self-study course is only one part of the total Navy training program. Practical experience, schools, selected reading, and your desire to succeed are also necessary to successfully round out a fully meaningful training program. THE COURSE: This self-study course is organized into subject matter areas, each containing learning objectives to help you determine what you should learn along with text and illustrations to help you understand the information. The subject matter reflects day-to-day requirements and experiences of personnel in the rating or skill area. It also reflects guidance provided by Enlisted Community Managers (ECMs) and other senior personnel, technical references, instructions, etc., and either the occupational or naval standards, which are listed in the Manual of Navy Enlisted Manpower Personnel Classifications and Occupational Standards, NAVPERS 18068. THE QUESTIONS: The questions that appear in this course are designed to help you understand the material in the text. VALUE: In completing this course, you will improve your military and professional knowledge. Importantly, it can also help you study for the Navy-wide advancement in rate examination. If you are studying and discover a reference in the text to another publication for further information, look it up. 2012 Edition Published by Center for Surface Combat Systems (CSCS) NAVSUP Logistics Tracking Number 0504-LP-111-3094 UNCLASSIFIED ii UNCLASSIFIED Sailor’s Creed “I am a United States Sailor. I will support and defend the Constitution of the United States of America and I will obey the orders of those appointed over me. I represent the fighting spirit of the Navy and those who have gone before me to defend freedom and democracy around the world. I proudly serve my country’s Navy combat team with honor, courage and commitment. I am committed to excellence and the fair treatment of all.” UNCLASSIFIED iii UNCLASSIFIED TABLE OF CONTENTS CHAPTER PAGE 1 Concepts of Alternating Current...................................................... 1-1 2 Inductance………….....................… (truncated, 4616 chars total)"
+                  - generic "Click for span details" [ref=f18e257] [cursor=pointer]:
+                    - generic [ref=f18e258]:
+                      - generic [ref=f18e259]: ">>"
+                      - generic [ref=f18e260]: llm.generate
+                    - generic [ref=f18e263]: 9.78s · 100.0%
+                - generic [ref=f18e264]:
+                  - generic [ref=f18e265]: Time breakdown — generation vs tools
+                  - generic [ref=f18e270]:
+                    - generic [ref=f18e271]: ■ generation 9.78s (100.0%)
+                    - generic [ref=f18e272]: ■ tools 0ms (0.00%)
+                    - generic [ref=f18e273]: ■ overhead 0ms (0.00%)
+                - generic [ref=f18e274]:
+                  - generic [ref=f18e275]: "Tokens:"
+                  - generic [ref=f18e276]: in:46,864
+                  - generic [ref=f18e277]: out:638
+            - generic [ref=f18e203] [cursor=pointer]:
+              - generic [ref=f18e204]:
+                - generic [ref=f18e205]:
+                  - generic [ref=f18e206]: TRACE
+                  - generic [ref=f18e207]: fb11370a
+                - generic [ref=f18e208]: DocumentAgent.answer
+              - generic [ref=f18e209]:
+                - generic [ref=f18e210]:
+                  - generic [ref=f18e211]: 
+                  - text: 2.25s
+                - generic [ref=f18e212]: 6.9K tokens
+                - generic [ref=f18e213]:
+                  - generic [ref=f18e214]: 
+                  - text: $0.0071
+                - generic [ref=f18e215]:
+                  - generic [ref=f18e216]: 
+                  - text: OK
+            - generic [ref=f18e218] [cursor=pointer]:
+              - generic [ref=f18e219]:
+                - generic [ref=f18e220]:
+                  - generic [ref=f18e221]: TRACE
+                  - generic [ref=f18e222]: 0e4c6a67
+                - generic [ref=f18e223]: DocumentAgent.answer
+              - generic [ref=f18e224]:
+                - generic [ref=f18e225]:
+                  - generic [ref=f18e226]: 
+                  - text: 13.30s
+                - generic [ref=f18e227]: 102.3K tokens
+                - generic [ref=f18e228]:
+                  - generic [ref=f18e229]: 
+                  - text: $0.1047
+                - generic [ref=f18e230]:
+                  - generic [ref=f18e231]: 
+                  - text: OK
+  - generic [ref=f18e232]: "0"

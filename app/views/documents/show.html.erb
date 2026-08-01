@@ -27,6 +27,13 @@
       </p>
     <% end %>
 
+    <% if @instructions_preview.present? %>
+      <details class="turn turn-tool">
+        <summary>⚙️ <code>system prompt</code> <span class="muted small">(instructions the agent receives, rendered live)</span></summary>
+        <pre><%= @instructions_preview %></pre>
+      </details>
+    <% end %>
+
     <% @messages.each do |message| %>
       <% if message.role == "tool" %>
         <details class="turn turn-tool">
@@ -45,6 +52,24 @@
           <div class="turn-body">
             <% if message.role == "assistant" %>
               <%= render_answer(message.content, @chunks_by_position) %>
+              <% generation = @generations.find { |g| (g.created_at - message.created_at).abs < 2 } %>
+              <% if generation %>
+                <details class="muted small">
+                  <summary>
+                    generation · <%= generation.model %> · in:<%= number_with_delimiter(generation.input_tokens) %>
+                    out:<%= number_with_delimiter(generation.output_tokens) %> · <%= generation.finish_reason %>
+                  </summary>
+                  <pre>trace_id:      <%= generation.trace_id %>
+model:         <%= generation.model %>
+finish_reason: <%= generation.finish_reason %>
+tokens:        in:<%= number_with_delimiter(generation.input_tokens) %> out:<%= number_with_delimiter(generation.output_tokens) %><% if generation.cached_tokens.to_i.positive? %> cached:<%= number_with_delimiter(generation.cached_tokens) %><% end %>
+est. cost:     <%= generation.estimated_cost ? "$#{format('%.4f', generation.estimated_cost)}" : "n/a" %>
+at:            <%= generation.created_at %>
+
+--- generation content ---
+<%= generation.content %></pre>
+                </details>
+              <% end %>
             <% else %>
               <%= simple_format(message.content) %>
             <% end %>
