@@ -228,6 +228,31 @@ Note: docsage's own cards can't show tool turns yet — solid_agent still
 can't see them (the 1.x Response gap) — but the dashboard sessions can,
 via trace spans.
 
+## Recovered the stranded dashboard branch (2026-08-01)
+
+"What happened to sortable by slowest?" — that UI lived on
+`claude/rubyllm-telemetry-recording-rogzp9` (15 commits, Jul 30–31), left
+behind by a Jul 31 main rebase (`backup/pre-main-rebase-20260731` exists;
+main kept the branch's *schema* — hence the orphaned observed-identity
+columns and out-of-enum `status=3` Clara rows — but lost its *code*).
+
+Merged to activeagents main (`3c13988` + fixups `7f98d29`). Recovered:
+sortable span waterfall (Time/Slowest/Name, log-scale bars), readable span
+names, timeline zoom, tool-usage aggregates, shared TimeWindowSelector
+(5m…90d, per-window bucket resolution), trace-derived Interactions
+(`TraceInteractionSerializer`, `trace-<id>` rows), `AgentRegistrar`, and
+the ruby_llm telemetry integration (Clara's SDK).
+
+Overlap resolutions (the branch and today's main work solved the same
+problems twice): AgentRegistrar supersedes my ingest auto-registration;
+trace-derived interactions supersede my AgentContext materialization
+(14 materialized rows deleted); serializer extended to read ActiveAgent's
+span attribute names alongside RubyLLM's; my attribute display ordering +
+prose rendering re-applied; 3d window added; API cap → 90d.
+
+Screenshot: `demo8-01-sortable-spans-restored.png` — the exact UI from the
+Jul 31 CleanShot, now on main against live docsage traces.
+
 ## Demo script (pending provider key)
 
 1. `bin/rails server -p 3001` (dashboard already on :3000)
