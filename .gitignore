@@ -34,3 +34,4 @@
 /config/*.key
 
 /tmp/screenshots/
+.playwright-mcp/
