@@ -152,6 +152,23 @@ but no ingest code populated them.
   never set; `llm.model` now uses the served model from `raw_response`.
 - Screenshot: `tmp/screenshots/demo4-01-agents-view-documentagent.png`.
 
+## Span detail: instructions + tools, verified in LLM context (2026-08-01)
+
+- The instructions WERE already on the prompt span — rendered below the long
+  messages block, easy to miss. Postgres jsonb normalizes attribute key
+  order, so ordering is now done in the dashboard UI (instructions → tools →
+  other → messages), with prose rendered as a wrapped block
+  (activeagents-telemetry, committed locally).
+- New `prompt.input.tools` span attribute (activeagent `d063fcdc`, pushed):
+  tool name, description, parameter keys.
+- **Verified instructions/tools reach the LLM on reruns** via
+  `response.raw_request`: a follow-up over 13 history messages sent
+  `system` (4,616 chars — full rendered instructions incl. outline),
+  `tools: [search_document, read_page]`, and the history. Instructions
+  re-render every generation, so status/outline changes flow into later
+  turns.
+- Screenshot: `tmp/screenshots/demo5-01-span-instructions-tools-order.png`.
+
 ## Demo script (pending provider key)
 
 1. `bin/rails server -p 3001` (dashboard already on :3000)
