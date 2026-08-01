@@ -92,6 +92,25 @@ outline bootstrap + `read_page` on-demand scans — see
 Word training manual: askable in 0.59s, fully indexed in 2.12s,
 cited Q&A working ([§2801]-style citations now encode page numbers).
 
+## Action Prompt view conventions (2026-08-01)
+
+Moved prompt content out of the agent class into the framework's view path,
+per docs.activeagents.ai (verified against the installed activeagent branch —
+the 1.x view resolver in `lib/active_agent/concerns/view.rb`):
+
+- `app/views/document_agent/instructions.md.erb` — system prompt, strict-loaded
+  via `prompt(instructions: true)`; ERB over `@document` so the partial-index
+  status and captured outline render dynamically.
+- `app/views/document_agent/{search_document,read_page}.json.jbuilder` — tool
+  schemas in the documented jbuilder convention, rendered through
+  `prompt_view_schema(:name)` (the branch's schema view resolver).
+- DocumentAgent now holds only controller logic + tool methods.
+- Note for upstream: the docs' `action_schemas` / auto-collected tool views
+  API exists on main but not on the 1.x branch — `prompt_view_schema` is the
+  supported path there; tools still pass explicitly to `prompt(tools:)`.
+- Verified live: read_page(40) via the view-loaded schema answered with
+  [§3901] citations (page 40's position block).
+
 ## Demo script (pending provider key)
 
 1. `bin/rails server -p 3001` (dashboard already on :3000)
