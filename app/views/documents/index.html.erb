@@ -1,0 +1,41 @@
+<header class="hero">
+  <h1>Docsage</h1>
+  <p>Upload a large document, then ask it questions — every answer cites its sources.</p>
+</header>
+
+<section class="card">
+  <h2>Upload a document</h2>
+  <%= form_with url: documents_path, multipart: true do |f| %>
+    <div class="field">
+      <%= f.label :title, "Title (optional)", name: nil %>
+      <%= f.text_field "document[title]", placeholder: "Defaults to the file name" %>
+    </div>
+    <div class="field">
+      <%= f.label :file, "File (.txt, .md, .pdf)", name: nil %>
+      <%= f.file_field "document[file]", accept: ".txt,.md,.markdown,.pdf,text/plain,text/markdown,application/pdf", required: true %>
+    </div>
+    <%= f.submit "Upload & index", class: "btn" %>
+  <% end %>
+</section>
+
+<section class="card">
+  <h2>Documents</h2>
+  <% if @documents.empty? %>
+    <p class="muted">Nothing uploaded yet.</p>
+  <% else %>
+    <table>
+      <thead><tr><th>Title</th><th>Status</th><th>Size</th><th>Passages</th><th>Uploaded</th></tr></thead>
+      <tbody>
+        <% @documents.each do |doc| %>
+          <tr>
+            <td><%= link_to doc.title, doc %></td>
+            <td><%= status_badge(doc) %></td>
+            <td><%= number_to_human_size(doc.byte_size) if doc.byte_size %></td>
+            <td><%= doc.chunk_count %></td>
+            <td><%= time_ago_in_words(doc.created_at) %> ago</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</section>

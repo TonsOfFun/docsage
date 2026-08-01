@@ -1,0 +1,67 @@
+<p><%= link_to "← All documents", root_path %></p>
+
+<header class="hero">
+  <h1><%= @document.title %></h1>
+  <p>
+    <%= status_badge(@document) %>
+    <% if @document.byte_size %> · <%= number_to_human_size(@document.byte_size) %><% end %>
+    <% if @document.ready? %> · <%= @document.chunk_count %> passages indexed<% end %>
+    <% if @context %> · <%= @context.total_input_tokens + @context.total_output_tokens %> tokens used<% end %>
+  </p>
+</header>
+
+<% if @document.failed? %>
+  <section class="card error"><p>Ingest failed: <%= @document.error_message %></p></section>
+<% elsif !@document.ready? %>
+  <section class="card">
+    <p class="muted">Extracting and indexing… <a href="">refresh</a> in a moment.</p>
+  </section>
+<% else %>
+  <section class="card chat">
+    <h2>Ask the document</h2>
+
+    <% @messages.each do |message| %>
+      <% if message.role == "tool" %>
+        <details class="turn turn-tool">
+          <summary>
+            🔍 <code><%= message.tool_name.presence || "search_document" %></code>
+            <% if message.tool_arguments.present? %>
+              — <%= message.tool_arguments.values.join(", ").truncate(80) %>
+            <% end %>
+            <span class="muted small">(tool call)</span>
+          </summary>
+          <pre><%= message.content.to_s.truncate(2_000) %></pre>
+        </details>
+      <% elsif %w[user assistant].include?(message.role) %>
+        <div class="turn turn-<%= message.role %>">
+          <div class="turn-role"><%= message.role == "user" ? "You" : "DocumentAgent" %></div>
+          <div class="turn-body">
+            <% if message.role == "assistant" %>
+              <%= render_answer(message.content, @chunks_by_position) %>
+            <% else %>
+              <%= simple_format(message.content) %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <%= form_with url: document_questions_path(@document), method: :post, class: "ask" do |f| %>
+      <%= f.text_field :question, placeholder: "e.g. What does the author say about …?", autofocus: true, autocomplete: "off", required: true %>
+      <%= f.submit "Ask", class: "btn" %>
+    <% end %>
+    <p class="muted small">Answers cite passages like <span class="citation">§12</span> — click one to jump to the source below.</p>
+  </section>
+
+  <section class="card">
+    <h2>Source passages</h2>
+    <div class="chunks">
+      <% @document.chunks.order(:position).each do |chunk| %>
+        <details id="chunk-<%= chunk.position %>">
+          <summary><span class="citation"><%= chunk.reference %></span> <span class="muted"><%= chunk.locator %></span></summary>
+          <pre><%= chunk.content %></pre>
+        </details>
+      <% end %>
+    </div>
+  </section>
+<% end %>
