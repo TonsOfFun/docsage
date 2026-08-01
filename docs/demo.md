@@ -133,6 +133,25 @@ true in both apps (screenshots `tmp/screenshots/demo3-0*.png`):
   text in the span details; the docsage generation block shows the same
   trace_id.
 
+## Agents view auto-registration (2026-08-01)
+
+Why DocumentAgent didn't appear next to the Clara agents: the Agents view
+lists registered `Agent` records, and nothing registered agents from
+telemetry — Clara rows came from an external client sync (`source:
+active_agents-ruby_llm`). The agents table already had observed-identity
+columns (`service_name`, `agent_class_name`, `action_name` + unique index)
+but no ingest code populated them.
+
+- **activeagents-telemetry (committed locally, not pushed):**
+  `TelemetryTrace.create_from_payload` now auto-registers observed agents —
+  any app that ships traces appears in the Agents view with zero client
+  config. `DocumentAgent.answer` (service `docsage`) now shows next to Clara.
+- **activeagent `6091f709` (pushed):** fixed span provider/model attribution —
+  `provider_name` called an API removed in 1.x and its `respond_to?` guard on
+  a private method never passed, so `agent.provider`/`llm.provider` were
+  never set; `llm.model` now uses the served model from `raw_response`.
+- Screenshot: `tmp/screenshots/demo4-01-agents-view-documentagent.png`.
+
 ## Demo script (pending provider key)
 
 1. `bin/rails server -p 3001` (dashboard already on :3000)
