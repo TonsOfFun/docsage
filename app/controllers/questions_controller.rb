@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
     document = Document.find(params[:document_id])
     question = params.require(:question).to_s.strip
 
-    if question.blank? || !document.ready?
+    if question.blank? || !document.askable?
       return redirect_to document, alert: "Type a question once the document is ready."
     end
 

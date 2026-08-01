@@ -5,6 +5,7 @@
   <p>
     <%= status_badge(@document) %>
     <% if @document.byte_size %> · <%= number_to_human_size(@document.byte_size) %><% end %>
+    <% if @document.indexing? %> · <%= @document.indexed_page_count %>/<%= @document.page_count %> pages · <%= @document.chunk_count %> passages so far<% end %>
     <% if @document.ready? %> · <%= @document.chunk_count %> passages indexed<% end %>
     <% if @context %> · <%= @context.total_input_tokens + @context.total_output_tokens %> tokens used<% end %>
   </p>
@@ -12,13 +13,19 @@
 
 <% if @document.failed? %>
   <section class="card error"><p>Ingest failed: <%= @document.error_message %></p></section>
-<% elsif !@document.ready? %>
+<% elsif !@document.askable? %>
   <section class="card">
     <p class="muted">Extracting and indexing… <a href="">refresh</a> in a moment.</p>
   </section>
 <% else %>
   <section class="card chat">
     <h2>Ask the document</h2>
+    <% if @document.indexing? %>
+      <p class="muted small">
+        Still indexing (<%= @document.indexed_page_count %>/<%= @document.page_count %> pages) — you can ask now;
+        the agent searches what's indexed and can scan any page on demand. <a href="">Refresh</a> for progress.
+      </p>
+    <% end %>
 
     <% @messages.each do |message| %>
       <% if message.role == "tool" %>

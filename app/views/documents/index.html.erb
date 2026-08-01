@@ -11,8 +11,8 @@
       <%= f.text_field "document[title]", placeholder: "Defaults to the file name" %>
     </div>
     <div class="field">
-      <%= f.label :file, "File (.txt, .md, .pdf)", name: nil %>
-      <%= f.file_field "document[file]", accept: ".txt,.md,.markdown,.pdf,text/plain,text/markdown,application/pdf", required: true %>
+      <%= f.label :file, "File (.txt, .md, .pdf, .docx)", name: nil %>
+      <%= f.file_field "document[file]", accept: ".txt,.md,.markdown,.pdf,.docx,text/plain,text/markdown,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document", required: true %>
     </div>
     <%= f.submit "Upload & index", class: "btn" %>
   <% end %>

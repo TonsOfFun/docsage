@@ -44,6 +44,8 @@ gem "solid_agent", path: "../solid_agent"
 
 # PDF text extraction for uploaded documents
 gem "pdf-reader", "~> 2.12"
+# DOCX text extraction (a .docx is a zip; the body lives in word/document.xml)
+gem "rubyzip", "~> 2.4", require: "zip"
 
 # The Ollama provider speaks OpenAI's compatible API through this client.
 gem "openai", "~> 0.38"

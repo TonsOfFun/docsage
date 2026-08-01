@@ -41,6 +41,57 @@ large file upload → cited Q&A → activeagents telemetry.
 | FTS5 virtual table breaks Rails' Ruby schema dumper (truncated `schema.rb`) | `schema_format = :sql` in `config/application.rb` |
 | `persist_prompt_to_context` writes `prompt_options[:messages].last` as the user turn — adding the user message yourself before `prompt` double-writes it | App convention: pass the question as the last `messages:` entry, never `add_user_message` first |
 
+## End-to-end validation with Anthropic key (2026-08-01)
+
+`ANTHROPIC_API_KEY` added to `.env` and validated live (Playwright, headless
+Chrome — screenshots in `tmp/screenshots/`):
+
+- **Key sanity check:** direct `POST /v1/messages` with the key succeeded
+  (`claude-haiku-4-5`).
+- **Gotcha hit:** the dev server predated the `.env` edit — dotenv only loads
+  at boot, so the running app had no key. Restarting `bin/rails server -p 3001`
+  fixed it. Remember to restart after editing `.env`.
+- **Cited Q&A through the UI:** asked the Ahab/doubloon question against
+  Moby-Dick (618 chunks); DocumentAgent answered with `[§585]` and `[§472]`
+  citations, 13.1K tokens, ~7s.
+- **Telemetry:** the run landed in the local dashboard as a
+  `DocumentAgent.answer` trace (Demo's Account) — span waterfall
+  root → agent.prompt → llm.generate, in:12,748 / out:352 tokens, $0.0142.
+- **Note:** the dashboard container on :3000 (`activeagents-telemetry-web-1`)
+  runs the `~/GitHub/activeagents-telemetry` checkout, *not*
+  `~/GitHub/activeagents`. Its UI lives at `/dashboard` (React SPA;
+  `/traces` 404s), sign-in `demo@example.com` / `password123`.
+
+## Live demo run #2 (2026-08-01, Playwright)
+
+Multi-turn follow-up on the existing Moby-Dick conversation, verified end to
+end against the dashboard. Screenshots in `tmp/screenshots/demo2-0*.png`.
+
+- **Follow-up with pronoun resolution:** asked "How does the crew react when
+  he nails it to the mast?" — DocumentAgent resolved "he/it" to Ahab/doubloon
+  from conversation history, searched, and answered with `[§472]` `[§541]`
+  citations. It also honestly noted the text lacks a passage on the crew's
+  *immediate* reaction — no confabulation.
+- **Citation jump:** clicking `[§541]` scrolled to the source passage anchor
+  (`#chunk-541`).
+- **Trace landed live:** dashboard traces list (Demo's Account) showed the run
+  as trace `e1c1d9f4` — `DocumentAgent.answer`, 5.79s, 12.5K tokens, $0.0135,
+  OK. Waterfall: root → agent.prompt → llm.generate (in:12,184 / out:322);
+  span detail exposes span id + per-span tokens. Requests/min chart shows all
+  three runs; 0 errors.
+- **Gotcha (dashboard SPA):** first load after sign-in redirect threw
+  `createInertiaApp: Cannot read properties of null (reading 'component')`
+  and rendered a blank page; a plain re-navigation to `/dashboard` fixed it.
+  Transient, but worth checking in the telemetry dashboard's Inertia setup.
+
+## Ingestion fan-out refactor (2026-08-01, after demo run #2)
+
+Serial ingestion replaced with concurrent per-page jobs + DOCX support +
+outline bootstrap + `read_page` on-demand scans — see
+[ingestion-fanout.md](ingestion-fanout.md). Validated live against a 116-page
+Word training manual: askable in 0.59s, fully indexed in 2.12s,
+cited Q&A working ([§2801]-style citations now encode page numbers).
+
 ## Demo script (pending provider key)
 
 1. `bin/rails server -p 3001` (dashboard already on :3000)

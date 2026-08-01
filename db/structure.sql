@@ -13,12 +13,7 @@ FOREIGN KEY ("blob_id")
   REFERENCES "active_storage_blobs" ("id")
 );
 CREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest") /*application='Docsage'*/;
-CREATE TABLE IF NOT EXISTS "documents" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "status" varchar, "content_kind" varchar, "byte_size" integer, "chunk_count" integer, "error_message" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL);
-CREATE TABLE IF NOT EXISTS "chunks" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "document_id" integer NOT NULL, "position" integer, "content" text, "locator" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_1dac2f17d2"
-FOREIGN KEY ("document_id")
-  REFERENCES "documents" ("id")
-);
-CREATE INDEX "index_chunks_on_document_id" ON "chunks" ("document_id") /*application='Docsage'*/;
+CREATE TABLE IF NOT EXISTS "documents" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "status" varchar, "content_kind" varchar, "byte_size" integer, "chunk_count" integer, "error_message" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "page_count" integer DEFAULT 0 NOT NULL /*application='Docsage'*/, "indexed_page_count" integer DEFAULT 0 NOT NULL /*application='Docsage'*/, "outline" text /*application='Docsage'*/);
 CREATE VIRTUAL TABLE chunk_search USING fts5(
   content,
   chunk_id UNINDEXED,
@@ -69,7 +64,24 @@ CREATE INDEX "index_agent_runs_on_status" ON "agent_runs" ("status") /*applicati
 CREATE INDEX "index_agent_runs_on_trace_id" ON "agent_runs" ("trace_id") /*application='Docsage'*/;
 CREATE INDEX "index_agent_runs_on_instructions_digest" ON "agent_runs" ("instructions_digest") /*application='Docsage'*/;
 CREATE INDEX "index_agent_runs_on_created_at" ON "agent_runs" ("created_at") /*application='Docsage'*/;
+CREATE TABLE IF NOT EXISTS "document_pages" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "document_id" integer NOT NULL, "number" integer NOT NULL, "status" varchar DEFAULT 'pending' NOT NULL, "content" text, "start_line" integer, "chunk_count" integer DEFAULT 0 NOT NULL, "error_message" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_1ce94307b7"
+FOREIGN KEY ("document_id")
+  REFERENCES "documents" ("id")
+);
+CREATE INDEX "index_document_pages_on_document_id" ON "document_pages" ("document_id") /*application='Docsage'*/;
+CREATE UNIQUE INDEX "index_document_pages_on_document_id_and_number" ON "document_pages" ("document_id", "number") /*application='Docsage'*/;
+CREATE TABLE IF NOT EXISTS "chunks" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "document_id" integer NOT NULL, "position" integer, "content" text, "locator" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "document_page_id" integer, CONSTRAINT "fk_rails_1dac2f17d2"
+FOREIGN KEY ("document_id")
+  REFERENCES "documents" ("id")
+, CONSTRAINT "fk_rails_9d4dd89ac1"
+FOREIGN KEY ("document_page_id")
+  REFERENCES "document_pages" ("id")
+);
+CREATE INDEX "index_chunks_on_document_id" ON "chunks" ("document_id") /*application='Docsage'*/;
+CREATE INDEX "index_chunks_on_document_page_id" ON "chunks" ("document_page_id") /*application='Docsage'*/;
 INSERT INTO "schema_migrations" (version) VALUES
+('20260801181000'),
+('20260801180000'),
 ('20260801164510'),
 ('20260801164509'),
 ('20260801164508'),

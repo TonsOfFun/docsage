@@ -1,9 +1,12 @@
 class Document < ApplicationRecord
   has_one_attached :file
   has_many :chunks, dependent: :destroy
+  has_many :pages, class_name: "DocumentPage", dependent: :destroy
   has_many :agent_contexts, as: :contextable, dependent: :destroy
 
-  STATUSES = %w[processing ready failed].freeze
+  # processing → planning pages; indexing → page jobs running (partially
+  # searchable); ready → every page indexed.
+  STATUSES = %w[processing indexing ready failed].freeze
 
   validates :title, presence: true
   validates :status, inclusion: { in: STATUSES }
@@ -12,6 +15,11 @@ class Document < ApplicationRecord
 
   def ready? = status == "ready"
   def failed? = status == "failed"
+  def indexing? = status == "indexing"
+
+  # Questions are allowed as soon as any page is searchable — answers just
+  # come from the indexed portion until the rest lands.
+  def askable? = ready? || (indexing? && indexed_page_count.positive?)
 
   # FTS5 search over this document's chunks, best matches first.
   def search_chunks(query, limit: 5)

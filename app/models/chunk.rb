@@ -1,5 +1,7 @@
 class Chunk < ApplicationRecord
   belongs_to :document
+  # Optional: chunks ingested before page fan-out have no page.
+  belongs_to :document_page, optional: true
 
   validates :content, presence: true
   validates :position, presence: true, uniqueness: { scope: :document_id }
