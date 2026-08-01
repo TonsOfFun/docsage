@@ -8,7 +8,7 @@ Built on:
 
 | Piece | Role |
 |---|---|
-| [activeagent](https://github.com/activeagents/activeagent) (`feat/telemetry-shared-core` + `fix/ollama-system-instructions`) | Agent framework — `DocumentAgent` is a controller with a tool-calling action |
+| [activeagent](https://github.com/activeagents/activeagent) (`main`) | Agent framework — `DocumentAgent` is a controller with a tool-calling action |
 | [solid_agent](https://github.com/activeagents/solid_agent) 0.2.0 | Persists the conversation: user turns, tool calls/results, generations with tokens & provenance |
 | [activeagents-telemetry](https://github.com/activeagents/activeagents-telemetry) | Ships every generation as a trace (root → llm → tool spans) to the dashboard |
 

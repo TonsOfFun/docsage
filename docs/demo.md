@@ -190,6 +190,26 @@ but no ingest code populated them.
   for the docx (116 pages); only pre-fan-out Moby-Dick (page_count 0) omits it.
 - Screenshots: `demo6-01` (interaction session), `demo6-02` (tool spans).
 
+## Consolidation to main (2026-08-01)
+
+Everything merged to activeagent `main` (`6a693bd4`): PR #350 (error
+taxonomy, model capabilities gating, max_tool_turns, redaction) squashed
+first, then the telemetry branch stack (shared-core refactor, Ollama system
+fix, content capture, tool spans). Conflict resolutions: kept the branch's
+richer instrumentation + #350's `messages.count`/`tag_name` fixes; ported
+#350's redaction to the shared-core report path (`Tracer#redact_trace!`) —
+the payload builder it hooked no longer exists. Verified live end to end
+(tool span + content attrs on a fresh trace). Branches
+`fix/ollama-system-instructions` and `feat/telemetry-shared-core` deleted.
+Dashboard work pushed to activeagents `main` (`88dbedb`). Local activeagent
+checkout now on `main`; docsage README updated.
+
+Known issue: the gem's test suite can't boot on this machine — dummy-app
+`credentials.yml.enc` doesn't decrypt with the checked-in `master.key`
+("Updating credz" `efad474b`); pre-existing, CI has the right key.
+
+Going forward: one PR at a time, branched from main.
+
 ## Demo script (pending provider key)
 
 1. `bin/rails server -p 3001` (dashboard already on :3000)
