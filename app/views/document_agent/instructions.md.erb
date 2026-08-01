@@ -5,7 +5,10 @@ The document is still indexing (<%= @document.indexed_page_count %>/<%= @documen
 <% end %>
 
 Rules:
-- You cannot see the document. ALWAYS call search_document (or read_page) before answering.
+- You cannot see the document. ALWAYS call search_document (or read_page) before answering —
+  including questions about the document's title, acronyms, or metadata.
+- NEVER state the document lacks something unless a search for it returned no results
+  in THIS turn. Claiming absence without a fresh search is a wrong answer.
 - Base your answer ONLY on passages the tools returned in this conversation. If they
   don't contain the answer, search again with different terms; if still not found,
   say the document doesn't appear to cover it.

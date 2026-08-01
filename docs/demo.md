@@ -169,6 +169,27 @@ but no ingest code populated them.
   turns.
 - Screenshot: `tmp/screenshots/demo5-01-span-instructions-tools-order.png`.
 
+## Tool telemetry live + dashboard browsing (2026-08-01)
+
+- **Tool spans are real now** (activeagent `23562a9d`, pushed): telemetry
+  wraps the agent's `tools_function` proc, so every tool call gets a timed
+  span with args + result under `llm.generate`. Waterfall shows
+  `tool.search_document 29ms (1.3%)` vs generation 2.19s; the old post-hoc
+  `result.tool_calls` path never fired (1.x responses don't expose it).
+- **Interactions from telemetry** (activeagents-telemetry, committed
+  locally): ingest materializes an AgentContext per trace — system
+  instructions, all turns including tool turns, and the generation with
+  trace-id link. `/dashboard/agents/35/interactions/sessions` shows the
+  latest DocumentAgent exchange.
+- **Time-range picker**: traces browsable at 5m/10m/15m/30m/45m/1h/3h/6h/
+  12h/1d/3d/1w/1mo (API max now 31 days; chart buckets cap at ~60).
+- **Tool-skipping fix (docsage)**: Haiku answered "what does NEETS stand
+  for?" with zero searches and an unverified "document doesn't explain it".
+  Instructions now forbid claiming absence without a same-turn search —
+  re-run made 1 search and hedged correctly. Note: `read_page` IS offered
+  for the docx (116 pages); only pre-fan-out Moby-Dick (page_count 0) omits it.
+- Screenshots: `demo6-01` (interaction session), `demo6-02` (tool spans).
+
 ## Demo script (pending provider key)
 
 1. `bin/rails server -p 3001` (dashboard already on :3000)
