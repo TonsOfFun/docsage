@@ -210,6 +210,24 @@ Known issue: the gem's test suite can't boot on this machine — dummy-app
 
 Going forward: one PR at a time, branched from main.
 
+## Standalone runs instead of a rolling conversation (2026-08-01)
+
+Q&A logs cleared and the interaction model changed: each ask now calls
+`create_context` (solid_agent) for a fresh context — one run, one session,
+one trace; no history replay. The document page renders one card per run
+(question → answer → generation details), newest first. Re-ran six
+questions across both documents → six separate traces/sessions in the
+dashboard; the sessions list under DocumentAgent.answer now shows lean
+3–7-message runs (tool turns included, materialized from spans) alongside
+the old fat rolling-history sessions. Input tokens per run dropped to the
+question + instructions (5.7K–38.8K depending on tool rounds) instead of
+compounding history. Screenshots: `demo7-01` (docsage run cards),
+`demo7-02` (dashboard sessions).
+
+Note: docsage's own cards can't show tool turns yet — solid_agent still
+can't see them (the 1.x Response gap) — but the dashboard sessions can,
+via trace spans.
+
 ## Demo script (pending provider key)
 
 1. `bin/rails server -p 3001` (dashboard already on :3000)

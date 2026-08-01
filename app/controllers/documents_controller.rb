@@ -20,9 +20,13 @@ class DocumentsController < ApplicationController
 
   def show
     @document = Document.find(params[:id])
-    @context = @document.agent_contexts.find_by(agent_name: "DocumentAgent")
-    @messages = @context&.messages&.order(:created_at) || []
-    @generations = @context&.generations&.order(:created_at)&.to_a || []
+    # One card per exchange: each ask creates its own context (run/session),
+    # newest first.
+    @exchanges = @document.agent_contexts
+      .where(agent_name: "DocumentAgent")
+      .includes(:messages, :generations)
+      .order(created_at: :desc)
+    @total_tokens = @exchanges.sum { |c| c.total_input_tokens.to_i + c.total_output_tokens.to_i }
     @chunks_by_position = @document.chunks.index_by(&:position)
     @instructions_preview = instructions_preview
   end

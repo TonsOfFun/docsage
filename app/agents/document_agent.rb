@@ -1,5 +1,6 @@
 # Answers questions about one uploaded document, grounded in retrieved
-# passages and citing every claim.
+# passages and citing every claim. Each ask is a standalone exchange (its
+# own context/run/trace), not a turn in a rolling conversation.
 #
 # The model cannot see the document directly — it must call search_document
 # (FTS5 over indexed chunks) or read_page (full page, indexed on demand).
@@ -21,19 +22,16 @@ class DocumentAgent < ApplicationAgent
 
   def answer
     @document = document
-    load_context(contextable: document)
-
-    # History is user/assistant turns only — replaying persisted tool-role
-    # messages without their paired tool_use blocks breaks providers.
-    history = context_messages.select { |message|
-      %w[user assistant].include?((message[:role] || message["role"]).to_s)
-    }
+    # One-shot exchange: every ask gets its own fresh context — one run, one
+    # session, one trace. No conversation history is replayed; each question
+    # must stand alone and be answered from tool results.
+    create_context(contextable: document)
 
     tools = [ prompt_view_schema(:search_document) ]
     tools << prompt_view_schema(:read_page) if document.page_count.positive?
 
     prompt(
-      messages: history + [ { role: "user", content: params[:question] } ],
+      messages: [ { role: "user", content: params[:question] } ],
       tools: tools,
       instructions: true # strict-load app/views/document_agent/instructions.md.erb
     )

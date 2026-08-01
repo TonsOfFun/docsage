@@ -7,7 +7,7 @@
     <% if @document.byte_size %> · <%= number_to_human_size(@document.byte_size) %><% end %>
     <% if @document.indexing? %> · <%= @document.indexed_page_count %>/<%= @document.page_count %> pages · <%= @document.chunk_count %> passages so far<% end %>
     <% if @document.ready? %> · <%= @document.chunk_count %> passages indexed<% end %>
-    <% if @context %> · <%= @context.total_input_tokens + @context.total_output_tokens %> tokens used<% end %>
+    <% if @exchanges.any? %> · <%= @exchanges.size %> runs · <%= number_with_delimiter(@total_tokens) %> tokens used<% end %>
   </p>
 </header>
 
@@ -34,11 +34,37 @@
       </details>
     <% end %>
 
-    <% @messages.each do |message| %>
-      <% if message.role == "tool" %>
+    <%= form_with url: document_questions_path(@document), method: :post, class: "ask" do |f| %>
+      <%= f.text_field :question, placeholder: "e.g. What does the author say about …?", autofocus: true, autocomplete: "off", required: true %>
+      <%= f.submit "Ask", class: "btn" %>
+    <% end %>
+    <p class="muted small">
+      Each question is a standalone run — the agent answers from tool results, citing passages
+      like <span class="citation">§12</span>; click one to jump to the source below.
+    </p>
+  </section>
+
+  <% @exchanges.each do |exchange| %>
+    <% question = exchange.messages.find { |m| m.role == "user" } %>
+    <% answer = exchange.messages.select { |m| m.role == "assistant" }.last %>
+    <% tool_messages = exchange.messages.select { |m| m.role == "tool" } %>
+    <% generation = exchange.generations.last %>
+    <section class="card chat exchange">
+      <p class="muted small">
+        run · <%= time_ago_in_words(exchange.created_at) %> ago
+        <% if generation %> · <%= generation.model %> · in:<%= number_with_delimiter(generation.input_tokens) %> out:<%= number_with_delimiter(generation.output_tokens) %><% end %>
+        <% if exchange.trace_id.present? %> · <span class="muted">trace:<%= exchange.trace_id.to_s.first(8) %></span><% end %>
+      </p>
+
+      <div class="turn turn-user">
+        <div class="turn-role">You</div>
+        <div class="turn-body"><%= simple_format(question&.content.to_s) %></div>
+      </div>
+
+      <% tool_messages.each do |message| %>
         <details class="turn turn-tool">
           <summary>
-            🔍 <code><%= message.tool_name.presence || "search_document" %></code>
+            🔍 <code><%= message.tool_name.presence || "tool" %></code>
             <% if message.tool_arguments.present? %>
               — <%= message.tool_arguments.values.join(", ").truncate(80) %>
             <% end %>
@@ -46,44 +72,34 @@
           </summary>
           <pre><%= message.content.to_s.truncate(2_000) %></pre>
         </details>
-      <% elsif %w[user assistant].include?(message.role) %>
-        <div class="turn turn-<%= message.role %>">
-          <div class="turn-role"><%= message.role == "user" ? "You" : "DocumentAgent" %></div>
-          <div class="turn-body">
-            <% if message.role == "assistant" %>
-              <%= render_answer(message.content, @chunks_by_position) %>
-              <% generation = @generations.find { |g| (g.created_at - message.created_at).abs < 2 } %>
-              <% if generation %>
-                <details class="muted small">
-                  <summary>
-                    generation · <%= generation.model %> · in:<%= number_with_delimiter(generation.input_tokens) %>
-                    out:<%= number_with_delimiter(generation.output_tokens) %> · <%= generation.finish_reason %>
-                  </summary>
-                  <pre>trace_id:      <%= generation.trace_id %>
+      <% end %>
+
+      <div class="turn turn-assistant">
+        <div class="turn-role">DocumentAgent</div>
+        <div class="turn-body">
+          <% if answer %>
+            <%= render_answer(answer.content, @chunks_by_position) %>
+          <% else %>
+            <p class="muted">No answer recorded.</p>
+          <% end %>
+          <% if generation %>
+            <details class="muted small">
+              <summary>
+                generation · <%= generation.model %> · in:<%= number_with_delimiter(generation.input_tokens) %>
+                out:<%= number_with_delimiter(generation.output_tokens) %> · <%= generation.finish_reason %>
+              </summary>
+              <pre>trace_id:      <%= generation.trace_id %>
 model:         <%= generation.model %>
 finish_reason: <%= generation.finish_reason %>
 tokens:        in:<%= number_with_delimiter(generation.input_tokens) %> out:<%= number_with_delimiter(generation.output_tokens) %><% if generation.cached_tokens.to_i.positive? %> cached:<%= number_with_delimiter(generation.cached_tokens) %><% end %>
 est. cost:     <%= generation.estimated_cost ? "$#{format('%.4f', generation.estimated_cost)}" : "n/a" %>
-at:            <%= generation.created_at %>
-
---- generation content ---
-<%= generation.content %></pre>
-                </details>
-              <% end %>
-            <% else %>
-              <%= simple_format(message.content) %>
-            <% end %>
-          </div>
+at:            <%= generation.created_at %></pre>
+            </details>
+          <% end %>
         </div>
-      <% end %>
-    <% end %>
-
-    <%= form_with url: document_questions_path(@document), method: :post, class: "ask" do |f| %>
-      <%= f.text_field :question, placeholder: "e.g. What does the author say about …?", autofocus: true, autocomplete: "off", required: true %>
-      <%= f.submit "Ask", class: "btn" %>
-    <% end %>
-    <p class="muted small">Answers cite passages like <span class="citation">§12</span> — click one to jump to the source below.</p>
-  </section>
+      </div>
+    </section>
+  <% end %>
 
   <section class="card">
     <h2>Source passages</h2>
