@@ -261,6 +261,10 @@ pulled from span content attributes — works for both SDK shapes
 (ActiveAgent `prompt.input.messages`/`llm.output.message`, RubyLLM
 `llm.prompt`/`llm.completion`). activeagents `d30db86`. Screenshot:
 `demo9-01-trace-io-previews.png`.
+- Follow-up polish: content attributes in span details render minimized
+  (one preview line each, chevron to expand/collapse independently), and the
+  span detail panel sits flush with the waterfall instead of floating
+  indented. activeagents `2301656`. Screenshots: `demo9-02`, `demo9-03`.
 
 ## Demo script (pending provider key)
 
