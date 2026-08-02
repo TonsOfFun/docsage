@@ -265,6 +265,10 @@ pulled from span content attributes — works for both SDK shapes
   (one preview line each, chevron to expand/collapse independently), and the
   span detail panel sits flush with the waterfall instead of floating
   indented. activeagents `2301656`. Screenshots: `demo9-02`, `demo9-03`.
+- Traces gained a Spans/Conversation toggle: the expanded trace can render
+  as the Interactions-style message stream (System/User/Tool/Assistant, same
+  `InteractionStream` component + `trace-<id>` serializer) so the whole
+  transaction reads in place. activeagents `6157237`. Screenshot: `demo9-04`.
 
 ## Demo script (pending provider key)
 
