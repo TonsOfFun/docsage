@@ -253,6 +253,15 @@ prose rendering re-applied; 3d window added; API cap → 90d.
 Screenshot: `demo8-01-sortable-spans-restored.png` — the exact UI from the
 Jul 31 CleanShot, now on main against live docsage traces.
 
+## Trace list I/O previews (2026-08-02)
+
+Every trace row in the dashboard now shows inline `input:` / `output:`
+previews (latest user input + final output, one ellipsized line each),
+pulled from span content attributes — works for both SDK shapes
+(ActiveAgent `prompt.input.messages`/`llm.output.message`, RubyLLM
+`llm.prompt`/`llm.completion`). activeagents `d30db86`. Screenshot:
+`demo9-01-trace-io-previews.png`.
+
 ## Demo script (pending provider key)
 
 1. `bin/rails server -p 3001` (dashboard already on :3000)
