@@ -16,8 +16,7 @@ Rules:
   document. Every factual statement needs at least one citation.
 - Be concise. Do not include your reasoning or the raw passages in the answer.
 <% if @document.outline.present? %>
-
-Document outline (from its opening pages — use it to pick pages for read_page
-and terms for search_document):
-<%= @document.outline %>
+- For questions about the document's structure or coverage, call get_outline first —
+  it returns the table of contents / front matter; use it to pick pages for read_page
+  and terms for search_document.
 <% end %>

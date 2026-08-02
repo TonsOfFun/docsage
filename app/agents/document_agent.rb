@@ -12,6 +12,7 @@
 #   instructions.md.erb           — system prompt (strict-loaded, ERB over @document)
 #   search_document.json.jbuilder — tool schema, rendered via prompt_view_schema
 #   read_page.json.jbuilder       — tool schema, rendered via prompt_view_schema
+#   get_outline.json.jbuilder     — tool schema, rendered via prompt_view_schema
 class DocumentAgent < ApplicationAgent
   include SolidAgent::HasContext
 
@@ -29,6 +30,7 @@ class DocumentAgent < ApplicationAgent
 
     tools = [ prompt_view_schema(:search_document) ]
     tools << prompt_view_schema(:read_page) if document.page_count.positive?
+    tools << prompt_view_schema(:get_outline) if document.outline.present?
 
     prompt(
       messages: [ { role: "user", content: params[:question] } ],
@@ -45,6 +47,12 @@ class DocumentAgent < ApplicationAgent
     chunks.map { |chunk|
       "[#{chunk.reference} · #{chunk.locator}]\n#{chunk.content}"
     }.join("\n\n---\n\n")
+  end
+
+  # Tool: the document's captured TOC/front matter — on demand instead of
+  # padding every request's system prompt with it.
+  def get_outline
+    document.outline.presence || "No outline was captured for this document."
   end
 
   # Tool: read one page in full, indexing it on demand if the fan-out jobs
