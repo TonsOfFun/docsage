@@ -1,0 +1,218 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - complementary [ref=e4]:
+      - button "Active Agent mascot Demo's Account" [ref=e6]:
+        - generic [ref=e7]:
+          - img "Active Agent mascot" [ref=e9]
+          - generic [ref=e34]: Demo's Account
+      - navigation [ref=e37]:
+        - generic [ref=e38]:
+          - button "@ Agents 6" [ref=e269]:
+            - generic [ref=e270]:
+              - generic [ref=e271]: "@"
+              - generic [ref=e272]: Agents
+            - generic [ref=e273]: "6"
+          - button "<> Interactions" [ref=e274]:
+            - generic [ref=e275]:
+              - generic [ref=e276]: <>
+              - generic [ref=e277]: Interactions
+          - button "+ New Agent" [ref=e278]:
+            - generic [ref=e279]:
+              - generic [ref=e280]: +
+              - generic [ref=e281]: New Agent
+          - button "> Run Agents" [ref=e282]:
+            - generic [ref=e283]:
+              - generic [ref=e284]: ">"
+              - generic [ref=e285]: Run Agents
+        - generic [ref=e56]:
+          - generic [ref=e57]: Observability
+          - generic [ref=e58]:
+            - button "-> Traces" [ref=e286]:
+              - generic [ref=e287]:
+                - generic [ref=e288]: "->"
+                - generic [ref=e289]: Traces
+            - button "# Metrics" [ref=e290]:
+              - generic [ref=e291]:
+                - generic [ref=e292]: "#"
+                - generic [ref=e293]: Metrics
+            - button "= Evaluations" [ref=e294]:
+              - generic [ref=e295]:
+                - generic [ref=e296]: =
+                - generic [ref=e297]: Evaluations
+            - button "[>] Session Replay" [ref=e298]:
+              - generic [ref=e299]:
+                - generic [ref=e300]: "[>]"
+                - generic [ref=e301]: Session Replay
+            - button "%% Benchmarks" [ref=e302]:
+              - generic [ref=e303]:
+                - generic [ref=e304]: "%%"
+                - generic [ref=e305]: Benchmarks
+        - generic [ref=e79]:
+          - generic [ref=e80]: Workspace
+          - generic [ref=e81]:
+            - button "🏢 Organization" [ref=e306]:
+              - generic [ref=e307]:
+                - generic [ref=e308]: 🏢
+                - generic [ref=e309]: Organization
+            - button "⚙️ Settings" [ref=e310]:
+              - generic [ref=e311]:
+                - generic [ref=e312]: ⚙️
+                - generic [ref=e313]: Settings
+      - generic [ref=e90]:
+        - generic [ref=e91]: Resources
+        - generic [ref=e92]:
+          - link "? Documentation" [ref=e93] [cursor=pointer]:
+            - /url: https://docs.activeagents.ai
+            - generic [ref=e94]: "?"
+            - generic [ref=e95]: Documentation
+          - link "* GitHub" [ref=e96] [cursor=pointer]:
+            - /url: https://github.com/activeagents/activeagent
+            - generic [ref=e97]: "*"
+            - generic [ref=e98]: GitHub
+      - generic [ref=e99]: Active Agent v1.0.3
+    - generic [ref=e101]:
+      - banner [ref=e102]:
+        - generic [ref=e103]:
+          - button "Switch to dark mode" [ref=e104]
+          - generic [ref=e107]: Connected
+          - button "D" [ref=e111]
+      - main [ref=e114]:
+        - generic [ref=e314]:
+          - generic [ref=e315]:
+            - generic [ref=e316]:
+              - heading "Interactions" [level=1] [ref=e317]
+              - paragraph [ref=e318]: Persisted conversation streams per agent — messages, generations and provenance
+            - generic [ref=e319]:
+              - generic [ref=e320]:
+                - generic [ref=e321]: Sort
+                - button "Recent" [ref=e322]
+                - button "Tokens" [ref=e323]
+                - button "Messages" [ref=e324]
+              - generic [ref=e325]:
+                - button "Zoom in" [ref=e326]: −
+                - combobox "Time window" [ref=e327]:
+                  - option "5m"
+                  - option "10m"
+                  - option "15m"
+                  - option "30m" [selected]
+                  - option "45m"
+                  - option "1h"
+                  - option "2h"
+                  - option "3h"
+                  - option "6h"
+                  - option "12h"
+                  - option "1d"
+                  - option "3d"
+                  - option "7d"
+                  - option "30d"
+                  - option "90d"
+                - button "Zoom out" [ref=e328]: +
+          - generic [ref=e329]:
+            - generic [ref=e330]:
+              - heading "Interactions over time" [level=3] [ref=e331]
+              - generic [ref=e332]: DocumentAgent.answer
+            - application [ref=e338]:
+              - generic [ref=e348]:
+                - generic [ref=e349]:
+                  - generic [ref=e350]: 01:38 PM
+                  - generic [ref=e352]: 01:43 PM
+                  - generic [ref=e354]: 01:48 PM
+                  - generic [ref=e356]: 01:53 PM
+                  - generic [ref=e358]: 01:58 PM
+                  - generic [ref=e360]: 02:03 PM
+                - generic [ref=e362]:
+                  - generic [ref=e363]: "0"
+                  - generic [ref=e365]: "2"
+                  - generic [ref=e367]: "4"
+            - generic [ref=e369]:
+              - generic [ref=e370]:
+                - generic [ref=e371]: "1"
+                - generic [ref=e372]: Interactions
+              - generic [ref=e373]:
+                - generic [ref=e374]: "1"
+                - generic [ref=e375]: Agents
+              - generic [ref=e376]:
+                - generic [ref=e377]: 6.6K
+                - generic [ref=e378]: Total tokens
+              - generic [ref=e379]:
+                - generic [ref=e380]: 6.6K
+                - generic [ref=e381]: Avg / interaction
+          - generic [ref=e383]:
+            - generic [ref=e384]:
+              - heading "DocumentAgent Answer Agent Interactions" [level=2] [ref=e385]
+              - generic [ref=e386]: 1 interaction · 6.6K tokens
+            - generic [ref=e387]:
+              - generic [ref=e388] [cursor=pointer]:
+                - generic [ref=e389]:
+                  - generic "Reported by an app running this agent outside the platform" [ref=e390]: REPORTED
+                  - generic [ref=e391]: DocumentAgent.answer
+                  - generic [ref=e392]: docsage
+                - generic [ref=e393]:
+                  - generic [ref=e394]: 4 messages
+                  - generic [ref=e395]: 6.6K tokens
+                  - generic [ref=e396]: 16m ago
+              - generic [ref=e399]:
+                - generic [ref=e400]:
+                  - generic [ref=e402]:
+                    - generic [ref=e403]: System
+                    - generic [ref=e404]:
+                      - generic [ref=e406]:
+                        - generic [ref=e407]: You answer questions about the document "NEETS Module 2" (177 passages across 116 pages).
+                        - generic [ref=e409]: "Rules:"
+                        - list [ref=e410]:
+                          - listitem [ref=e411]: You cannot see the document. ALWAYS call search_document (or read_page) before answering —
+                        - generic [ref=e412]: including questions about the document's title, acronyms, or metadata.
+                        - list [ref=e413]:
+                          - listitem [ref=e414]: NEVER state the document lacks something unless a search for it returned no results
+                        - generic [ref=e415]: in THIS turn. Claiming absence without a fresh search is a wrong answer.
+                        - list [ref=e416]:
+                          - listitem [ref=e417]: Base your answer ONLY on passages the tools returned in this conversation. If they
+                        - generic [ref=e418]: don't contain the answer, search again with different terms; if still not found,
+                        - generic [ref=e419]: say the document doesn't appear to cover it.
+                        - list [ref=e420]:
+                          - listitem [ref=e421]: Cite the passage reference (like [§12]) after every claim you take from the
+                        - generic [ref=e422]: document. Every factual statement needs at least one citation.
+                        - list [ref=e423]:
+                          - listitem [ref=e424]: Be concise. Do not include your reasoning or the raw passages in the answer.
+                          - listitem [ref=e425]: For questions about the document's structure or coverage, call get_outline first —
+                        - generic [ref=e426]: it returns the table of contents / front matter; use it to pick pages for read_page
+                        - generic [ref=e427]: and terms for search_document.
+                      - generic [ref=e428]: 1:50:24 PM
+                  - generic [ref=e431]:
+                    - generic [ref=e432]: User
+                    - generic [ref=e433]:
+                      - generic [ref=e434]: What is the turns ratio of a transformer?
+                      - generic [ref=e437]: 1:50:24 PM
+                  - generic [ref=e440] [cursor=pointer]:
+                    - generic [ref=e441]: Assistant
+                    - generic [ref=e442]:
+                      - generic [ref=e443]: —
+                      - generic [ref=e446]:
+                        - generic [ref=e447]: 1:50:20 PM
+                        - generic [ref=e448]: ⚙ search_document
+                  - generic [ref=e452] [cursor=pointer]:
+                    - generic [ref=e453]: Tool
+                    - generic [ref=e454]:
+                      - generic [ref=e455]: "[§6302 · page 64] proportion also shows the relationship between the number of turns in each winding and the voltage across each winding. This proportion is expressed by the equation: Figure 5-10 Transformer turns and voltage ratios NEETS MODULE 2-Alternating Current and Transformers UNCLASSIFIED 5-16 UNCLASSIFIED Notice the equation shows that the ratio of secondary voltage to primary voltage is equal to the ratio of secondary turns to primary turns. The equation can be written as: The following formulas are derived from the above equation: If any three of the quantities in the above formulas are known, the fourth quantity can be calculated. Example. A transformer has 200 turns in the primary, 50 turns in the secondary, and 120 volts applied to the primary (E p). What is the voltage across the secondary (ES)? NEETS MODULE 2-Alternating Current and Transformers UNCLASSIFIED 5-17 UNCLASSIFIED Example. There are 400 turns of wire in an iron-core coil. If this coil is to be used as the primary of a transformer, how many turns must be wound on the coil to form the secondary winding of the transformer to have a secondary voltage of one volt if the primary voltage is five volts? Note: The ratio of the voltage (5:1) is equal to the turns ratio (400:80). Sometimes, instead of specific values, you are given a turns or voltage ratio. In this case, you may assume any value for one of the voltages (or turns) and compute the other value from the ratio. For example, if a turn ratio is given as 6:1, you can assume a number of turns for the primary and compute the secondary number of turns (60:10, 36:6, 30:5, etc.). The transformer in each of the above problems has fewer turns in the secondary than in the primary. As a result, there is less voltage across the secondary than across the primary. A transformer in which the voltage across the secondary is less than the voltage across the primary is called a STEP-DOWN transformer. The ratio of a four-to-one step- down transformer is written as 4:1. A transformer that has fewer turns in the primary than in the secondary will produce a greater voltage across the secondary than the voltage applied to the primary. A transformer in which the voltage across the secondary is greater than the voltage applied to the primary is called a STEP-UP transformer. The ratio of a one-to-four step-up transformer should be written as 1:4. Notice in the two ratios that the value of the primary winding is always stated first. NEETS MODULE 2-Alternating Current and Transformers UNCLASSIFIED 5-18 UNCLASSIFIED Q16. Does 1:5 indicate a step-up or step-down transformer? Q17. A transformer has 500 turns on the primary and 1500 turns on the secondary. If 45 volts are applied to the primary, what is the voltage developed across the secondary? (Assume no losses) Q18. A transformer has a turns ratio of 7:1. If 5 volts is developed across the secondary, what is the voltage applied to the primary? (Note: E --- [§6601 · page 67] The above equations can be looked at from another point of view. The expression is called the transformer TURNS RATIO and may be expressed as a single factor. Remember, the turns ratio indicates the amount by which the transformer increases or decreases the voltage applied to the primary. For example, if the secondary of a transformer has two times as many turns as the primary, the voltage induced into the secondary will be two times the voltage across the primary. NEETS MODULE 2-Alternating Current and Transformers UNCLASSIFIED 5-22 UNCLASSIFIED If the secondary has one-half as many turns as the primary, the voltage across the secondary will be one-half the voltage across the primary. However, the turns ratio and the current ratio of a transformer have an inverse relationship. Thus, a 1:2 step-up transformer will have one-half the current in the secondary as in the primary. A 2:1 step- down transformer will have twice the current in the second… (truncated, 12037 chars total)"
+                      - generic [ref=e456]:
+                        - generic [ref=e457]: 1:50:20 PM
+                        - generic [ref=e458]: ⚙ search_document
+                  - generic [ref=e462]:
+                    - generic [ref=e463]: Assistant
+                    - generic [ref=e464]:
+                      - generic [ref=e466]:
+                        - generic [ref=e467]: The turns ratio of a transformer is the ratio of the number of turns of wire in the primary winding to the number of turns in the secondary winding. [§7103] When the turns ratio is stated, the number representing turns on the primary is always stated first. [§7103] For example, a 1:2 turns ratio means the secondary has twice the number of turns as the primary. [§7103]
+                        - generic [ref=e469]: The turns ratio indicates the amount by which the transformer increases or decreases the voltage applied to the primary. [§6601] If the secondary has two times as many turns as the primary, the voltage induced into the secondary will be two times the voltage across the primary. [§6601] Conversely, if the secondary has one-half as many turns as the primary, the voltage across the secondary will be one-half the voltage across the primary. [§6601]
+                      - generic [ref=e470]: 1:50:24 PM
+                - generic [ref=e472]:
+                  - generic [ref=e473]: Generations
+                  - generic [ref=e475]:
+                    - generic "No prompt cache hit" [ref=e476]: ● generated
+                    - generic [ref=e477]: claude-haiku-4-5-20251001
+                    - generic [ref=e478]: Anthropic
+                    - generic [ref=e479]: in:6.3K
+                    - generic [ref=e480]: out:261
+                    - generic [ref=e481]: end_turn
+                    - generic [ref=e482]: 4541ms
+                    - generic "93de749c-e8d4-4c86-bc17-8086a376388a" [ref=e483]: trace:93de749c
+  - generic [ref=e209]: 02:03

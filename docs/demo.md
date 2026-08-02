@@ -270,6 +270,24 @@ pulled from span content attributes — works for both SDK shapes
   `InteractionStream` component + `trace-<id>` serializer) so the whole
   transaction reads in place. activeagents `6157237`. Screenshot: `demo9-04`.
 
+## Deterministic citation verification (2026-08-02)
+
+"Shouldn't the agent validate its own references?" — now enforced without
+trusting the model. Tool methods record every §N they serve onto the run's
+context (`served_positions`); after generation, `CitationValidator` checks
+each cited §N against that set. Unverified citations trigger ONE corrective
+pass (continuing the same context via `context_id`, so the model sees its
+answer and what the tools actually returned); the final verdict persists as
+`citation_check` on the context. UI: run cards show "citations verified ✓"
+(or "⚠ unverified: §N…"), and unverified refs render struck-through red.
+
+Prior fabrications this catches: `[§A-F]` appendix refs, `[§1]…[§5]`
+chapter refs, range citations. Instructions now also forbid ranges and
+§-citing outline content (get_outline serves no refs). Live result: the
+structure question that used to fabricate now answers from the outline with
+NO citations, and a searched answer gets the verified badge. Screenshot:
+`demo10-01-citations-verified.png`.
+
 ## Demo script (pending provider key)
 
 1. `bin/rails server -p 3001` (dashboard already on :3000)

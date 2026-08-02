@@ -49,11 +49,19 @@
     <% answer = exchange.messages.select { |m| m.role == "assistant" }.last %>
     <% tool_messages = exchange.messages.select { |m| m.role == "tool" } %>
     <% generation = exchange.generations.last %>
+    <% citation_check = exchange.options&.dig("citation_check") %>
     <section class="card chat exchange">
       <p class="muted small">
         run · <%= time_ago_in_words(exchange.created_at) %> ago
         <% if generation %> · <%= generation.model %> · in:<%= number_with_delimiter(generation.input_tokens) %> out:<%= number_with_delimiter(generation.output_tokens) %><% end %>
         <% if exchange.trace_id.present? %> · <span class="muted">trace:<%= exchange.trace_id.to_s.first(8) %></span><% end %>
+        <% if citation_check %>
+          <% if Array(citation_check["unverified"]).empty? %>
+            · <span style="color:#15803d" title="Every §N in the answer appeared in a tool result this run<%= citation_check["corrected"] ? " (after one correction pass)" : "" %>">citations verified ✓<%= citation_check["corrected"] ? " (corrected)" : "" %></span>
+          <% else %>
+            · <span style="color:#b91c1c" title="These references never appeared in a tool result">⚠ unverified: <%= Array(citation_check["unverified"]).map { |p| "§#{p}" }.join(", ") %></span>
+          <% end %>
+        <% end %>
       </p>
 
       <div class="turn turn-user">
@@ -78,7 +86,7 @@
         <div class="turn-role">DocumentAgent</div>
         <div class="turn-body">
           <% if answer %>
-            <%= render_answer(answer.content, @chunks_by_position) %>
+            <%= render_answer(answer.content, @chunks_by_position, unverified: citation_check&.dig("unverified")) %>
           <% else %>
             <p class="muted">No answer recorded.</p>
           <% end %>

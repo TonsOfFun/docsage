@@ -25,15 +25,25 @@ class DocumentAgent < ApplicationAgent
     @document = document
     # One-shot exchange: every ask gets its own fresh context — one run, one
     # session, one trace. No conversation history is replayed; each question
-    # must stand alone and be answered from tool results.
-    create_context(contextable: document)
+    # must stand alone and be answered from tool results. The exception is a
+    # citation-check correction pass, which continues the run's context so
+    # the model sees its own answer and the tool results it ignored.
+    history = []
+    if params[:context_id]
+      load_context(context_id: params[:context_id])
+      history = context_messages.select { |message|
+        %w[user assistant].include?((message[:role] || message["role"]).to_s)
+      }
+    else
+      create_context(contextable: document)
+    end
 
     tools = [ prompt_view_schema(:search_document) ]
     tools << prompt_view_schema(:read_page) if document.page_count.positive?
     tools << prompt_view_schema(:get_outline) if document.outline.present?
 
     prompt(
-      messages: [ { role: "user", content: params[:question] } ],
+      messages: history + [ { role: "user", content: params[:question] } ],
       tools: tools,
       instructions: true # strict-load app/views/document_agent/instructions.md.erb
     )
@@ -44,6 +54,7 @@ class DocumentAgent < ApplicationAgent
     chunks = document.search_chunks(query, limit: 5)
     return "No passages matched #{query.inspect}. Try different or fewer terms." if chunks.empty?
 
+    record_served(chunks)
     chunks.map { |chunk|
       "[#{chunk.reference} · #{chunk.locator}]\n#{chunk.content}"
     }.join("\n\n---\n\n")
@@ -63,7 +74,9 @@ class DocumentAgent < ApplicationAgent
 
     PageIndexer.new(page).call unless page.indexed?
 
-    page.chunks.order(:position).map { |chunk|
+    chunks = page.chunks.order(:position).to_a
+    record_served(chunks)
+    chunks.map { |chunk|
       "[#{chunk.reference} · #{chunk.locator}]\n#{chunk.content}"
     }.join("\n\n---\n\n").presence || "Page #{number} has no extractable text."
   end
@@ -72,5 +85,15 @@ class DocumentAgent < ApplicationAgent
 
   def document
     params[:document]
+  end
+
+  # Every §N a tool hands the model is recorded on the run's context, so the
+  # answer's citations can be verified deterministically afterwards
+  # (CitationValidator) instead of trusting the model's claim of grounding.
+  def record_served(chunks)
+    return if context.nil?
+
+    served = Array(context.options&.dig("served_positions")) | chunks.map(&:position)
+    context.update_columns(options: (context.options || {}).merge("served_positions" => served))
   end
 end
