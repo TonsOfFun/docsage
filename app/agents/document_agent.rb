@@ -10,9 +10,10 @@
 # Prompt content lives in the Action Prompt view path, per framework
 # conventions (app/views/document_agent/):
 #   instructions.md.erb           — system prompt (strict-loaded, ERB over @document)
-#   search_document.json.jbuilder — tool schema, rendered via prompt_view_schema
-#   read_page.json.jbuilder       — tool schema, rendered via prompt_view_schema
-#   get_outline.json.jbuilder     — tool schema, rendered via prompt_view_schema
+#   search_document.json.jbuilder      — tool schema, rendered via prompt_view_schema
+#   read_page.json.jbuilder            — tool schema, rendered via prompt_view_schema
+#   get_outline.json.jbuilder          — tool schema, rendered via prompt_view_schema
+#   get_document_stats.json.jbuilder   — tool schema, rendered via prompt_view_schema
 class DocumentAgent < ApplicationAgent
   include SolidAgent::HasContext
 
@@ -38,7 +39,7 @@ class DocumentAgent < ApplicationAgent
       create_context(contextable: document)
     end
 
-    tools = [ prompt_view_schema(:search_document) ]
+    tools = [ prompt_view_schema(:search_document), prompt_view_schema(:get_document_stats) ]
     tools << prompt_view_schema(:read_page) if document.page_count.positive?
     tools << prompt_view_schema(:get_outline) if document.outline.present?
 
@@ -64,6 +65,27 @@ class DocumentAgent < ApplicationAgent
   # padding every request's system prompt with it.
   def get_outline
     document.outline.presence || "No outline was captured for this document."
+  end
+
+  # Tool: size and structure facts, plus the §N-to-page mapping so the model
+  # can navigate between citations and pages.
+  def get_document_stats
+    lines = [
+      "Title: #{document.title}",
+      "Format: #{document.content_kind || 'unknown'}",
+      "File size: #{ActiveSupport::NumberHelper.number_to_human_size(document.byte_size)}",
+      "Status: #{document.status}#{" (#{document.indexed_page_count}/#{document.page_count} pages indexed)" if document.indexing?}",
+      "Passages (chunks): #{document.chunks.count}, ~#{PageIndexer::TARGET_CHUNK_CHARS} chars each"
+    ]
+    if document.page_count.positive?
+      lines << "Pages: #{document.page_count}"
+      lines << "Citation mapping: each page owns a block of #{DocumentPage::POSITION_STRIDE} §N positions — " \
+               "page P covers §#{DocumentPage::POSITION_STRIDE}×(P−1)+1 onward, so §N is on page ((N−1)÷#{DocumentPage::POSITION_STRIDE})+1. " \
+               "Example: §#{(document.page_count / 2 - 1) * DocumentPage::POSITION_STRIDE + 1} is page #{document.page_count / 2}."
+    else
+      lines << "Pages: none (ingested pre-pagination); §N positions run 1–#{document.chunks.maximum(:position) || 0} sequentially."
+    end
+    lines.join("\n")
   end
 
   # Tool: read one page in full, indexing it on demand if the fan-out jobs

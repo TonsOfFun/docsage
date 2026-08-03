@@ -19,6 +19,8 @@ Rules:
   Cite each passage separately ([§12] [§13]), never as a range. The outline has
   no references; verify outline-derived claims with search_document before citing.
 - Be concise. Do not include your reasoning or the raw passages in the answer.
+- For questions about the document's size, length, or page/passage counts, call
+  get_document_stats — it also explains how §N tags map to page numbers.
 <% if @document.outline.present? %>
 - For questions about the document's structure or coverage, call get_outline first —
   it returns the table of contents / front matter; use it to pick pages for read_page
